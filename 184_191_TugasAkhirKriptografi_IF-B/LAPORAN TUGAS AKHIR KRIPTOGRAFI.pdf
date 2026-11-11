@@ -1,0 +1,877 @@
+LAPORAN TUGAS AKHIR KRIPTOGRAFI
+Dosen Pengampu : Bagus Muhammad Akbar S.ST., M.Kom. 
+ 
+ 
+  
+ 
+Disusun Oleh:
+Yohanes Herang Aji Dharma
+123240074
+IF-B
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+PROGRAM STUDI INFORMATIKA 
+JURUSAN INFORMATIKA 
+FAKULTAS TEKNIK INDUSTRI 
+UNIVERSITAS PEMBANGUNAN NASIONAL “VETERAN”
+YOGYAKARTA 
+2026 
+ 
+LEMBAR PERNYATAAN & PENGESAHAN 
+LAPORAN TUGAS AKHIR MATA KULIAH KRIPTOGRAFI
+Sistem Pengamanan Multi-Lapis Berbasis USB Dongle, Biometrik, Super Enkripsi, Steganografi, dan Hybrid Blockchain Ledger 
+Disusun Oleh:
+Anggota Tim 1,
+
+
+
+
+Anggota Tim 2,
+
+
+
+
+
+
+
+
+
+
+(Yohanes Herang Aji.D)
+NIM. 123240191
+
+
+
+
+()
+NIM. 123240241
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Telah diperiksa, disetujui, dan diverifikasi oleh Dosen Pengampu Mata Kuliah Kriptografi sebagai bukti penyelesaian Tugas Akhir serta syarat verifikasi mengikuti pelaksanaan Ujian Tengah Semester (UTS). 
+Pada Tanggal: …………………
+
+
+
+
+Menyetujui,
+Dosen Pengampu Mata Kuliah Kriptografi
+
+
+
+
+
+
+
+
+
+
+
+
+Bagus Muhammad Akbar, S.ST., M.Kom. 
+
+
+ 
+KATA PENGANTAR 
+Puji syukur kami panjatkan kehadirat Tuhan Yang Maha Esa atas rahmat, hidayah, dan karunia-Nya, sehingga kami dapat menyelesaikan penyusunan Laporan Tugas Akhir Mata Kuliah Kriptografi ini tepat pada waktunya. Laporan ini disusun untuk mendokumentasikan hasil perancangan, pengembangan, dan pengujian aplikasi CyberVault System, sebuah sistem pengamanan data rahasia multi-lapis yang mengintegrasikan autentikasi perangkat keras (USB Dongle), biometrik wajah, password hashing SHA-256, super encryption (Vigenère dan AES-256-CBC), enkripsi file biner, steganografi LSB pada citra PNG, serta pencatatan integritas aset berbasis Hybrid Blockchain Ledger.
+Terselesaikannya laporan dan proyek akhir ini tidak lepas dari bimbingan, dukungan, dan bantuan berbagai pihak. Oleh karena itu, pada kesempatan ini kami ingin menyampaikan apresiasi dan ucapan terima kasih yang sebesar-besarnya kepada:
+Bagus Muhammad Akbar, S.ST., M.Kom. selaku Dosen Pengampu Mata Kuliah Kriptografi yang telah memberikan arahan, bimbingan, serta wawasan teoretis maupun praktis selama proses perkuliahan dan pengerjaan proyek akhir ini. 
+Orang tua dan keluarga tercinta yang senantiasa memberikan doa, dorongan moral, serta dukungan dalam menyelesaikan pendidikan akademik. 
+Rekan-rekan mahasiswa Program Studi Informatika UPN "Veteran" Yogyakarta, khususnya rekan kelompok seperjuangan yang telah saling berkolaborasi dan berkontribusi aktif dalam merancang serta mengimplementasikan aplikasi ini. 
+Kami menyadari bahwa penyusunan laporan ini masih jauh dari kata sempurna, baik dari segi penulisan maupun pembahasan materi teknis. Oleh karena itu, kami sangat mengharapkan kritik dan saran yang konstruktif dari dosen pengampu maupun pembaca guna penyempurnaan karya-karya kami di masa mendatang. Akhir kata, semoga laporan tugas akhir ini dapat memberikan manfaat, wawasan teknis, serta kontribusi positif bagi pengembangan ilmu pengetahuan di bidang kriptografi dan keamanan informasi. 
+                                                                                            	 Yogyakarta, 30 Oktober 2026 
+  
+ 
+                                                                                                       Yohanes Herang Aji Dharma
+ 
+DAFTAR ISI 
+LEMBAR PERNYATAAN & PENGESAHAN	2
+LAPORAN TUGAS AKHIR MATA KULIAH KRIPTOGRAFI	2
+KATA PENGANTAR	3
+DAFTAR ISI	4
+BAB I	6
+PENDAHULUAN	6
+1.1. Latar Belakang	6
+1.2. Rumusan Masalah	8
+1.3. Tujuan Penelitian	8
+1.4. Manfaat Penelitian	9
+1.4.1. Manfaat Akademis	9
+1.4.2. Manfaat Praktis	10
+1.5. Batasan Masalah	10
+BAB II	11
+PEMBAHASAN	11
+2.1. Keamanan Informasi dan Layanan Kriptografi	11
+2.2. Autentikasi Perangkat Keras (Hardware Dongle)	12
+2.3. Autentikasi Biometrik Wajah dan Password Hashing	13
+2.3.1. Biometrik Wajah (Facial Biometrics)	13
+2.3.1. Salted Password Hashing (SHA-256)	14
+2.4. Super Enkripsi Teks (Kombinasi Klasik dan Modern)	14
+2.4.1. Kriptografi Klasik (Vigenère Cipher)	15
+2.4.2. Kriptografi Modern Simetris (AES-256-CBC)	15
+2.4.3. Konsep dan Formulasi Super Enkripsi	16
+2.5. Enkripsi Berkas Biner (Binary File Locker)	17
+2.6. Steganografi Citra Digital (Least Significant Bit - LSB)	18
+2.7. Teknologi Blockchain Hibrida (Hybrid Dual-Layer Ledger)	19
+BAB III	21
+RANCANGAN & ARSITEKTUR SISTEM	21
+3.1. Arsitektur Teknologi (Tech Stack)	21
+3.1.1. Perangkat Lunak Utama dan Lingkungan Pengkodean	21
+3.1.2. Pustaka Kriptografi, Pemrosesan Citra, dan GUI	21
+3.1.3. Modul Kontrol Akses Fisik dan Integrasi Blockchain	21
+3.2. Perancangan Alur Kerja dan Arsitektur Sistem (System Workflow)	21
+3.2.1. Diagram Arsitektur Keseluruhan Sistem (CyberVault Architecture)	21
+3.2.2. Alur Autentikasi Multi-Lapis (USB Dongle, Biometrik Wajah, & Salted Password Hash)	21
+3.2.3. Alur Pemrosesan Super Enkripsi Teks (Vigenère + AES-256-CBC)	21
+3.2.4. Alur Penguncian Berkas Biner (Binary File Locker)	21
+3.2.5. Alur Penyembunyian dan Ekstraksi Steganografi LSB Citra PNG	21
+3.2.6. Alur Pencatatan dan Sinkronisasi Hybrid Blockchain Ledger	21
+3.3. Perancangan Antarmuka Pengguna (User Interface Design)	21
+3.3.1. Konsep Tata Letak dan Tema Visual (Tactical Dark UI)	21
+3.3.2. Perancangan Antarmuka Layar Autentikasi dan Login	21
+3.3.3. Perancangan Dashboard Utama dan Menu Navigasi Modul	21
+3.3.4. Perancangan Tampilan Modul Enkripsi Teks dan File	21
+3.3.5. Perancangan Tampilan Steganografi dan Audit Trail Ledger	21
+3.4. Skema Basis Data dan Struktur Ledger	21
+3.4.1. Skema Tabel Basis Data (Supabase Cloud & Failover SQLite)	21
+3.4.2. Struktur Blok dan Pointer Hash Local Proof-of-Work (Layer 1)	21
+3.4.3. Format Payload Transaksi dan Metadata Polygon Amoy Testnet (Layer 2)	21
+BAB IV	22
+IMPLEMENTASI & PENGUJIAN SISTEM	22
+4.1. Spesifikasi Lingkungan Implementasi	22
+4.1.1. Spesifikasi Perangkat Keras dan Kamera Pemindai	22
+4.1.2. Lingkungan Sistem Operasi dan Interpreter Python	22
+4.1.3. Pustaka dan Dependensi Perangkat Lunak Utama	22
+4.2. Implementasi Modul Utama (Core Engine)	22
+4.2.1. Modul Autentikasi Dongle USB dan Sentinel Listener (psutil)	22
+4.2.2. Modul Pemindaian Biometrik Wajah (OpenCV)	22
+4.2.3. Modul Verifikasi Password Hash (SHA-256 with Salt)	22
+4.2.4. Modul Super Enkripsi Teks (Vigenère Cipher & AES-256-CBC)	22
+4.2.5. Modul Penguncian Berkas Biner (Binary File Locker)	22
+4.2.6. Modul Steganografi LSB Citra PNG (Pillow)	22
+4.2.7. Modul Pencatatan dan Sinkronisasi Blockchain Hibrida (web3.py)	22
+4.3. Implementasi Antarmuka Pengguna (User Interface)	22
+4.3.1. Tampilan Gerbang Autentikasi Dongle dan Pemindaian Wajah	22
+4.3.2. Tampilan Dashboard Utama CyberVault System	22
+4.3.3. Tampilan Modul Super Enkripsi Teks dan File Locker	22
+4.3.4. Tampilan Modul Steganografi Gambar dan Audit Ledger Blockchain	22
+4.4. Pengujian Fungsional dan Analisis Hasil (Black-Box Testing)	22
+4.4.1. Pengujian Responsivitas Auto-Lock Dongle dan Akurasi Biometrik	22
+4.4.2. Pengujian Kerahasiaan Super Enkripsi dan Reversibilitas File Locker (100%)	22
+4.4.3. Pengujian Imperseptibilitas Visual dan Ekstraksi Steganografi LSB	22
+4.4.4. Pengujian Integritas Rantai Lokal PoW dan Verifikasi Transaksi PolygonScan	22
+BAB V	23
+PENUTUP	23
+5.1. Kesimpulan	23
+5.2. Saran	23
+DAFTAR PUSTAKA	24
+LAMPIRAN	25
+ 
+ 
+ 
+
+
+ 
+BAB I
+PENDAHULUAN 
+Latar Belakang
+Perkembangan teknologi informasi dan komunikasi yang pesat di era transformasi digital telah mengubah paradigma pengelolaan dan pertukaran data digital secara signifikan. Dalam ekosistem komputasi modern, data tidak lagi hanya berupa teks sederhana, melainkan mencakup berkas dokumen sensitif, media citra, hingga kredensial akses sistem. Namun, peningkatan konektivitas ini berbanding lurus dengan tingginya risiko keamanan siber, seperti penyadapan saluran komunikasi (eavesdropping), manipulasi data oleh pihak yang tidak berwenang (adversaries/cryptanalysts), hingga serangan pembobolan kredensial (brute-force dan dictionary attack).
+Dalam disiplin ilmu keamanan informasi, perlindungan data berorientasi pada pemenuhan layanan keamanan utama yang mencakup kerahasiaan (confidentiality), integritas data (data integrity), serta autentikasi pengguna (authentication). Layanan kerahasiaan bertujuan memastikan bahwa informasi asli (plaintext) maupun kunci enkripsi hanya dapat diakses oleh entitas yang sah dan tetap tersembunyi dari pencegat (interceptor). Mekanisme keamanan konvensional yang hanya mengandalkan kata sandi tunggal (single-factor authentication) berbasis teks biasa (plaintext) pada basis data terbukti sangat rentan terhadap kebocoran. Apabila basis data utama berhasil diakses secara ilegal, seluruh data sensitif dapat dieksploitasi tanpa hambatan. Oleh karena itu, diperlukan pendekatan proteksi berlapis (Defense-in-Depth) yang menggabungkan kontrol akses fisik, autentikasi biometrik, kriptografi simetris dan asimetris, steganografi, hingga teknologi ledger terdistribusi.
+Untuk menyelesaikan permasalahan keandalan sistem pengamanan data tersebut, proyek akhir ini merancang dan mengembangkan sebuah aplikasi brankas digital komprehensif bernama CyberVault System. Aplikasi ini dibangun menggunakan bahasa pemrograman Python 3.10+ dengan antarmuka berbasis CustomTkinter bergaya Tactical Dark UI, yang mengintegrasikan enam pilar pengamanan utama:
+Pengamanan Perangkat Keras (Hardware Dongle)
+Sebagai lapisan pertahanan fisik pertama, aplikasi dilengkapi daemon background listener berbasis pustaka psutil yang mendeteksi keberadaan USB Flashdisk ber-file signature classified.key. Jika dongle tidak terdeteksi atau dicabut saat aplikasi berjalan, sistem secara otomatis mengunci seluruh akses (auto-lock).
+Autentikasi Ganda (Biometrics & Salted Hash)
+Pengguna wajib melewati verifikasi biometrik pemindaian landmark wajah menggunakan OpenCV, dilanjutkan dengan verifikasi kata sandi yang diproses melalui fungsi hash satu arah SHA-256 yang dikombinasikan dengan salt acak. Basis data hanya menyimpan nilai hash, sehingga kata sandi asli pengguna tidak pernah tersimpan di server.
+Super Enkripsi Teks Rahasia
+Pengamanan pesan teks menerapkan skema super encryption berlapis. Layer pertama menggunakan algoritma klasik Vigenère Cipher (Full ASCII) untuk pengacakan berbasis substitusi polialfabetik, kemudian dilanjutkan layer kedua menggunakan algoritma modern AES-256-CBC (Advanced Encryption Standard) dengan padding PKCS#7 dan Initialization Vector (IV) acak untuk mencapai prinsip confusion dan diffusion yang kuat.
+Enkripsi Berkas Biner (Binary Lock)
+Mengingat karakter data dokumen (PDF, DOCX, ZIP) berbeda dari teks biasa, enkripsi berkas menggunakan algoritma stream/block cipher khusus (ChaCha20 / DES stream) yang mengoperasikan raw binary stream secara independen, menghasilkan berkas .locked yang tidak dapat dibuka oleh aplikasi luar namun dapat dikembalikan (reversible 100%) secara utuh.
+Penyembunyian Pesan Gambar (Image Steganography)
+Mengimplementasikan metode Least Significant Bit (LSB) pada citra format lossless PNG. Pesan rahasia disisipkan pada bit paling rendah kanal warna RGB tanpa mengubah persepsi visual citra secara signifikan.
+Integrasi Integritas Aset (Hybrid Dual-Layer Blockchain)
+Untuk menjamin integritas aset penting agar tamper-proof, aplikasi mencatat nilai hash SHA-256 aset ke dalam Local Proof-of-Work Ledger (Layer 1) untuk audit instan, serta menyinkronkannya secara asinkron via web3.py ke jaringan publik Polygon Amoy Testnet (Layer 2) untuk menghasilkan bukti transaksi permanen yang dapat diverifikasi melalui PolygonScan Explorer.
+Melalui integrasi arsitektur tersebut, proyek akhir ini tidak hanya memenuhi seluruh kriteria spesifikasi penugasan mata kuliah Kriptografi, tetapi juga menghasilkan produk perangkat lunak dengan keandalan tinggi, struktur yang bersih, serta daya jual akademis dan praktis di bidang keamanan siber. 
+Rumusan Masalah
+Berdasarkan latar belakang yang telah diuraikan, rumusan masalah dalam pengerjaan proyek akhir ini adalah: 
+Bagaimana merancang mekanisme autentikasi perangkat keras (USB Dongle) dan kontrol akses biometrik wajah yang terintegrasi secara real-time untuk mencegah akses unauthorized?
+Bagaimana mengimplementasikan fungsi hashing SHA-256 dengan mekanisme salting agar kredensial pengguna terproteksi secara aman pada basis data?
+Bagaimana memformulasikan algoritma Super Encryption menggabungkan Vigenère Cipher dan AES-256-CBC untuk menjamin kerahasiaan pesan teks?
+Bagaimana merancang mekanisme Binary Lock pada berkas digital yang mampu mengubah stream biner menjadi format terenkripsi dan dapat didekripsi kembali secara reversible 100%?
+Bagaimana menyisipkan dan mengekstraksi pesan rahasia pada citra PNG menggunakan teknik steganografi Least Significant Bit (LSB) tanpa menimbulkan degradasi visual?
+Bagaimana menerapkan arsitektur Hybrid Dual-Layer Blockchain (Lokal PoW dan Polygon Amoy Testnet) untuk membuktikan integritas dan ketahanan aset dari manipulasi data?
+Tujuan Penelitian
+Berdasarkan perumusan masalah yang telah dipaparkan sebelumnya, pelaksanaan proyek akhir pengembangan CyberVault System ini memiliki serangkaian tujuan strategis. Tujuan-tujuan ini dirancang secara sistematis untuk menjawab kebutuhan akan keandalan sistem keamanan data rahasia melalui integrasi kontrol akses fisik, biometrik, kriptografi berlapis, steganografi, hingga integrasi teknologi blockchain. Secara lebih spesifik, tujuan dari pelaksanaan penelitian dan pengerjaan proyek akhir ini adalah sebagai berikut:
+Mengembangkan Aplikasi Desktop CyberVault System
+Membangun aplikasi berbasis Python (CustomTkinter) dengan antarmuka Tactical Dark UI yang intuitif, fungsional, dan memenuhi standar keamanan tinggi.
+Mengimplementasikan Autentikasi Perangkat Keras dan Biometrik
+Membangun modul USB Sentinel Listener berbasis pustaka psutil dan pemindaian biometrik wajah (Facial Biometrics) via OpenCV sebagai gerbang autentikasi ganda dan proteksi fisik secara real-time.
+Menerapkan Hashing Kredensial Pengguna
+Menerapkan pengamanan kata sandi berbasis Salted Password Hashing menggunakan algoritma SHA-256 untuk mencegah kebocoran kredensial pada basis data.
+Membangun Mesin Kriptografi Berlapis
+Memformulasikan mesin Super Encryption untuk pesan teks yang menggabungkan algoritma klasik (Vigenère Cipher) dan modern (AES-256-CBC), serta merancang algoritma Binary Lock file yang aman dan dapat dibalik (reversible 100%).
+Menyediakan Fitur Steganografi Gambar
+Mengimplementasikan steganografi Least Significant Bit (LSB) pada media citra format PNG yang mampu menyisipkan dan mengekstraksi pesan rahasia secara presisi tanpa mengorbankan kualitas visual.
+Mengintegrasikan Teknologi Blockchain Hibrida
+Menerapkan arsitektur Hybrid Dual-Layer Blockchain (rantai lokal Proof-of-Work dan jaringan publik Polygon Amoy Testnet via web3.py) untuk validasi dan audit integritas aset penting secara transparan.
+Manfaat Penelitian
+Pengembangan aplikasi CyberVault System dalam proyek akhir mata kuliah Kriptografi ini diharapkan dapat memberikan kontribusi nyata yang luas, baik dalam lingkup akademis maupun penerapannya di dunia industri. Melalui perancangan arsitektur keamanan berlapis (Defense-in-Depth), penelitian ini menawarkan nilai tambah yang terbagi ke dalam dua aspek utama berikut: 
+Manfaat Akademis
+Memberikan pemahaman mendalam dan komprehensif mengenai penerapan praktis gabungan algoritma kriptografi klasik dan modern, eksplorasi steganografi pada media citra digital, serta pemanfaatan teknologi blockchain terdistribusi dalam pengembangan arsitektur perangkat lunak keamanan nyata. 
+Manfaat Praktis
+Menghasilkan perkakas brankas rahasia digital (CyberVault) berstandar industri yang siap pakai untuk mengamankan catatan rahasia, dokumen biner penting, citra steganografi, serta kredensial akun pengguna dari berbagai ancaman siber dan peretasan. 
+Batasan Masalah
+Dalam rangka memastikan perancangan dan pengujian aplikasi CyberVault System berjalan secara terarah, efektif, serta sesuai dengan alokasi waktu dan spesifikasi penugasan proyek akhir mata kuliah Kriptografi, diperlukan pembatasan ruang lingkup pembahasan. Pembatasan ini bertujuan agar fokus pengerjaan tetap terarah pada pemenuhan kriteria teknis utama sistem keamanan tanpa meluas ke luar konteks penugasan. Adapun batasan masalah dalam pelaksanaan proyek akhir ini adalah sebagai berikut: 
+Perangkat Keras USB Dongle
+Verifikasi fisik hardware dongle dibatasi pada penggunaan media penyimpanan masal (USB Flashdisk) berformat FAT32 atau NTFS yang memuat berkas kunci khusus bernama classified.key sebagai token autentikasi utama.
+Pemindaian Biometrik Wajah
+Proses autentikasi biometrik wajah (Facial Biometrics) memanfaatkan kamera webcam laptop atau PC standar berbasis pustaka OpenCV pada kondisi intensitas pencahayaan ruangan yang memadai.
+Format Citra Steganografi
+Media pembawa (cover image) untuk penyembunyian dan ekstraksi pesan rahasia metode Least Significant Bit (LSB) dibatasi pada citra digital format lossless PNG (Portable Network Graphics) guna menjaga keutuhan bit pesan.
+Lingkungan Jaringan Blockchain
+Pencatatan integritas aset penting diimplementasikan menggunakan arsitektur hibrida yang mencakup ledger lokal Proof-of-Work serta sinkronisasi publik ke jaringan Polygon Amoy Testnet melalui pustaka web3.py.
+Platform dan Lingkungan Pengujian
+Aplikasi dirancang, dikembangkan, dan diuji secara khusus untuk berjalan pada sistem operasi Windows 10/11 64-bit berbasis bahasa pemrograman Python 3.10+ dengan antarmuka CustomTkinter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BAB II
+PEMBAHASAN
+Keamanan Informasi dan Layanan Kriptografi
+	Keamanan informasi merupakan aspek krusial dalam perancangan sistem komputasi modern untuk melindungi data sensitif dari akses tidak sah, penyadapan, serta manipulasi data selama proses transmisi maupun penyimpanan. Dalam ranah sistem keamanan CyberVault System, kriptografi menjadi fondasi utama yang menyediakan sekumpulan mekanisme matematis untuk memenuhi layanan keamanan informasi standar industri.
+Secara umum, layanan dasar dan konsep keamanan informasi dalam kriptografi mencakup beberapa pilar berikut:
+Kerahasiaan (Confidentiality)
+Layanan yang dirancang untuk menjaga isi informasi maupun kunci dari pihak-pihak yang tidak berhak. Fokus utama kerahasiaan adalah memastikan bahwa pesan asli (plaintext) hanya dapat dibaca dan dimengerti oleh penerima yang sah.
+Integritas Data (Data Integrity)
+Layanan yang menjamin bahwa pesan atau aset digital tidak mengalami perubahan, penambahan, pemotongan, atau pemalsuan oleh pihak lain tanpa terdeteksi sejak pertama kali dibuat atau dikirimkan.
+Autentikasi (Authentication)
+Layanan yang berkaitan dengan kepastian identitas, baik autentikasi pihak yang berkomunikasi (peer entity authentication) maupun autentikasi keaslian sumber data (data origin authentication).
+Ancaman dan Kriptanalisis (Cryptanalysis)
+Dalam pertukaran data, penyadap atau penyerang dikenal dengan berbagai istilah seperti penyusup (intruder), penyerang (attacker), musuh (enemy/adversaries), pencegat (interceptor), maupun lawan (opponent). Pihak pengganggu ini berusaha melakukan tindakan kriptanalisis (cryptanalysis) untuk mengungkap plaintext, mencari tahu kunci enkripsi, atau mengeksploitasi kelemahan dari sistem kriptografi yang digunakan.
+Kriteria Keamanan Komputasi (Computationally Secure)
+Sebuah algoritma dan sistem kriptografi dikatakan aman secara komputasi (computationally secure) apabila memenuhi tiga syarat utama:
+Persamaan matematis yang menggambarkan operasi algoritma sangat kompleks sehingga tidak dapat dipecahkan secara analitik (analytical attack).
+Biaya komputasi dan sumber daya yang dibutuhkan untuk memecahkan ciphertext jauh melampaui nilai ekonomis atau tingkat kerahasiaan dari informasi itu sendiri.
+Waktu komputasi yang diperlukan untuk memecahkan kunci melalui percobaan menyeluruh (exhaustive attack/brute-force) melampaui jangka waktu informasi tersebut harus dijaga kerahasiaannya. Sebagai contoh, pada algoritma berpajang kunci 128-bit atau 256-bit, upaya pencarian kunci memerlukan pengujian setengah dari total kombinasi yang ada, yang membutuhkan waktu komputasi hingga orde 1024 tahun sehingga secara praktis mustahil untuk dipecahkan.
+Autentikasi Perangkat Keras (Hardware Dongle)
+	Keamanan fisik (physical security) merupakan salah satu garis pertahanan pertama yang paling fundamental dalam perancangan sistem komputasi berintegritas tinggi. Dalam konteks aplikasi CyberVault System, mekanisme autentikasi perangkat keras (hardware dongle) diterapkan sebagai kontrol akses fisik (physical access control) untuk memastikan bahwa aplikasi hanya dapat dihidupkan dan dijalankan pada lingkungan komputasi yang terhubung secara sah dengan token otorisasi fisik.
+Adapun rincian konsep teoretis dan mekanisme pengamanan berbasis autentikasi perangkat keras ini mencakup beberapa komponen teknis utama berikut:
+Konsep Hardware Security Token
+Sistem memanfaatkan media penyimpanan eksternal (USB Flashdisk) yang difungsikan sebagai token keamanan fisik. Keberadaan token ini mensyaratkan prinsip kepemilikan fisik (something you have) dari pengguna sebelum sistem mengizinkan inisialisasi antarmuka maupun eksekusi modul kriptografi di dalamnya.
+Pemantauan Latar Belakang (USB Sentinel Listener)
+Aplikasi menjalankan proses daemon background secara real-time berbasis pustaka psutil untuk memindai titik penambatan (mount points) dan status removable drive pada sistem operasi. Pemantauan ini dilakukan secara kontinu tanpa mengganggu responsivitas antarmuka utama.
+Verifikasi File Signature (Classified Key)
+Proses otentikasi dongle tidak sekadar memeriksa koneksi fisik perangkat USB, melainkan melakukan pembacaan dan verifikasi terhadap keberadaan berkas penanda khusus bernama classified.key. Berkas penanda ini memuat kunci autentikasi unik yang dicocokkan oleh modul keamanan sebelum memberikan izin akses ke tingkat berikutnya.
+Proteksi Real-Time dan Sistem Auto-Lock
+Apabila selama aplikasi beroperasi perangkat USB dongle dilepas atau terputus dari port USB, USB Sentinel Listener secara instan merespons dengan memicu fungsi penguncian otomatis (auto-lock). Layar aplikasi akan seketika terkunci dan seluruh sesi kerja dibekukan guna mencegah potensi akses tanpa izin (unauthorized access) oleh pihak yang tidak berwenang.
+Autentikasi Biometrik Wajah dan Password Hashing
+	Sebagai bagian dari skema autentikasi ganda (Multi-Factor Authentication) dalam CyberVault System, verifikasi identitas pengguna tidak hanya bergantung pada kepemilikan token fisik USB dongle, tetapi juga melibatkan verifikasi biometrik karakteristik fisik dan pengetahuan kredensial berupa kata sandi yang diolah secara aman. 
+Biometrik Wajah (Facial Biometrics) 
+Autentikasi biometrik wajah merupakan teknologi pengenalan pola yang memanfaatkan fitur-fitur unik fisiologis wajah manusia sebagai identifier digital untuk memastikan keaslian pengguna. 
+Pemrosesan Citra Digital: Aplikasi mengaktifkan kamera (webcam) dan menggunakan pustaka OpenCV untuk menangkap aliran bingkai gambar (video frame) secara real-time saat proses login berlangsung.
+Penentuan Landmark Wajah: Sistem melakukan pemetaan koordinat spasial pada area krusial wajah (mata, hidung, mulut, dan garis kontur rahang) untuk membentuk vektor fitur numerik (facial landmark encodings).
+Matriks Pencocokan Pola: Nilai enkoding wajah yang ditangkap saat login dibandingkan dengan data enkoding master pengguna yang telah terdaftar melalui perhitungan jarak Euclidean. Apabila nilai deviasi berada di bawah ambang batas toleransi (threshold) keamanan, identitas wajah dinyatakan sah dan sistem melanjutkan ke tahap autentikasi kata sandi.
+Salted Password Hashing (SHA-256) 
+Setelah verifikasi biometrik berhasil, pengguna diwajibkan memasukkan kata sandi (password) sebagai lapisan autentikasi logis. Untuk menjaga keamanan kredensial ini pada penyimpanan basis data, diterapkan fungsi hash kriptografis SHA-256 dengan teknik salting. 
+Karakteristik Fungsi Hash SHA-256: SHA-256 (Secure Hash Algorithm 256-bit) merupakan fungsi hash kriptografi satu arah (one-way function) yang memproses masukan teks berukuran berapa pun dan menghasilkan nilai hash (digest) berukuran tetap 256 bit (64 karakter heksadesimal). Sifat utama SHA-256 adalah irreversibility (tidak dapat dibalik kembali ke bentuk plaintext) serta ketahanan terhadap bentrokan (collision resistance) dan serangan pre-image.
+Mekanisme Salting: Untuk memproteksi kata sandi dari serangan pencocokan otomatis seperti rainbow table (tabel pra-komputasi hash) dan dictionary attack, sistem menambahkan string acak unik yang dinamakan salt ke dalam kata sandi asli sebelum proses hashing dijalankan. Formula komputasi yang diterapkan adalah:
+Hash = SHA-256 (Salt || Password
+Jaminan Keamanan Data: Melalui skema ini, plaintext kata sandi pengguna tidak pernah disimpan di dalam basis data (baik pada Supabase cloud maupun SQLite lokal). Basis data hanya menyimpan nilai salt dan nilai hash hasil pengolahan, sehingga meskipun basis data berhasil diakses secara ilegal oleh peretas, kata sandi asli pengguna tetap tidak dapat terungkap.
+
+
+Super Enkripsi Teks (Kombinasi Klasik dan Modern)
+	Mekanisme pengamanan pesan teks dalam CyberVault System menerapkan teknik super enkripsi (layered encryption), yaitu skema penguncian berlapis di mana keluaran terenkripsi (ciphertext) dari satu algoritma kriptografi diproses kembali sebagai masukan (plaintext) bagi algoritma kriptografi berikutnya. Pendekatan ini dirancang untuk menggabungkan keunggulan algoritma kriptografi klasik berbasis pergeseran karakter dengan keunggulan algoritma kriptografi modern berbasis transformasi bit/blok yang kompleks.
+Kriptografi Klasik (Vigenère Cipher) 
+Kriptografi klasik beroperasi pada tingkat karakter menggunakan prinsip substitusi atau transposisi. Pada CyberVault System, algoritma Vigenère Cipher digunakan sebagai lapisan pengacak pertama (Layer 1). 
+Prinsip Substitusi Polialfabetik: Vigenère Cipher merupakan salah satu jenis polyalphabetic substitution cipher yang dipublikasikan oleh Blaise de Vigenère pada abad ke-16. Berbeda dengan Caesar Cipher yang menggunakan nilai pergeseran tunggal, Vigenère Cipher menggunakan sebuah kata kunci (keyword) yang diulang secara periodik sepanjang pesan. 
+Formulasi Matematis: Proses enkripsi dan dekripsi karakter Vigenère Cipher beroperasi pada rentang karakter alfabet maupun set ASCII. Secara matematis, proses enkripsi karakter ke-i (Ci) dan dekripsi (Pi) dengan karakter kunci Ki dirumuskan sebagai: 
+Ci = (Pi + Ki) (mod N)
+Pi = (Ci - Ki + N) (mod N)
+di mana N mewakili jangkauan ruang karakter (misalnya N=26 untuk huruf A–Z atau N=256 untuk seluruh set karakter ASCII). 
+Peran dalam Super Enkripsi: Penggunaan Vigenère Cipher pada lapisan awal bertujuan untuk menghilangkan keteraturan frekuensi karakter asli pada teks sebelum teks diproses oleh algoritma tingkat lanjut. 
+Kriptografi Modern Simetris (AES-256-CBC)
+Kriptografi modern bekerja dalam mode bit dan memproses data dalam blok-blok biner. Pada CyberVault System, algoritma Advanced Encryption Standard (AES) dengan panjang kunci 256-bit dan mode operasi Cipher Block Chaining (CBC) diimplementasikan sebagai lapisan pengacak kedua (Layer 2). 
+Arsitektur Rijndael AES-256: AES-256 merupakan algoritma block cipher simetris yang mengolah blok data berukuran 128-bit (16 byte) menggunakan kunci rahasia sepanjang 256-bit. Proses enkripsi AES-256 mengeksekusi 14 putaran (rounds) transformasi matematis. Setiap putaran utama terdiri atas empat tahap transformasi: SubBytes (substitusi byte non-linear via S-Box untuk efek confusion), ShiftRows (pergeseran baris matriks state untuk efek diffusion), MixColumns (pencampuran kolom matriks dalam Galois Field GF(28)), dan AddRoundKey (operasi XOR antara matriks state dengan kunci putaran/round key).
+Mode Operasi Cipher Block Chaining (CBC): Dalam mode CBC, setiap blok plaintext (Pi) di-XOR-kan terlebih dahulu dengan blok ciphertext sebelumnya (Ci-1) sebelum dienkripsi oleh fungsi AES. Untuk blok pertama (P1), proses XOR menggunakan vektor inisialisasi acak (Initialization Vector / IV) berukuran 16 byte. Penambahan IV acak memastikan bahwa pesan teks yang sama akan menghasilkan ciphertext yang berbeda di setiap proses enkripsi.
+Skema Padding PKCS#7: Karena AES beroperasi pada ukuran blok tetap 128-bit (16 byte), data teks masukan yang panjangnya bukan kelipatan 16 byte disesuaikan ukurannya menggunakan skema padding PKCS#7 sebelum diproses oleh mesin enkripsi.
+Konsep dan Formulasi Super Enkripsi 
+Super enkripsi menggabungkan dua atau lebih algoritma kriptografi secara berurutan untuk meningkatkan kompleksitas kriptanalisis secara signifikan. 
+Skema Eksekusi Berlapis: Pada aplikasi CyberVault System, alur komputasi super enkripsi teks dinyatakan dalam formula: 
+Cfinal = AES-256-CBC K2, IV (Vigenere K1 (P))
+di mana P adalah plaintext masukan, K1 adalah kunci rahasia Vigenère Cipher, K2 adalah kunci simetris AES-256, dan IV adalah Initialization Vector acak. 
+Alur Dekripsi Berlapis: Proses dekripsi membalikkan urutan komputasi secara presisi: 
+P = Vigenere K1 -1 (AES-256-CBC K2 - 1, IV (Cfinal)
+di mana ciphertext Cfinal didekripsi terlebih dahulu menggunakan AES-256-CBC untuk menghasilkan ciphertext perantara Vigenère, yang kemudian didekripsi kembali menggunakan kunci K1 untuk menghasilkan plaintext asli secara utuh (100% reversible). 
+Efek Keamanan Kombinasi: Penggabungan ini menghasilkan proteksi ganda (Defense-in-Depth). Apabila seorang peretas/kriptanalis berhasil menebak atau menganalisis salah satu lapisan algoritma, teks pesan tetap terlindungi oleh lapisan algoritma lainnya yang memiliki karakteristik pengacakan berbeda. 
+ 
+Enkripsi Berkas Biner (Binary File Locker)
+Pengamanan berkas digital (seperti dokumen PDF, DOCX, maupun arsip ZIP) memiliki karakteristik yang berbeda dari pengamanan pesan teks biasa. Berkas biner mengandung struktur internal, header, dan metadata tertentu yang rentan mengalami kerusakan (file corruption) apabila dienkripsi dengan metode pergeseran berbasis karakter biasa. Dalam aplikasi CyberVault System, pengamanan berkas dilakukan dengan membaca dan mengolah seluruh aliran biner mentah (raw binary stream) menggunakan algoritma enkripsi simetris khusus yang terpisah dari algoritma enkripsi pesan teks.
+Adapun prinsip teoretis dan mekanisme teknis pada modul enkripsi berkas biner ini meliputi beberapa poin utama berikut:
+Pengolahan Stream Biner Mentah (Raw Binary Stream)
+Berkas digital dibaca oleh sistem sebagai rangkaian byte biner mentah (byte array). Pendekatan ini memastikan bahwa seluruh struktur internal berkas, termasuk header dan trailer berkas asli, dienkripsi secara menyeluruh tanpa bergantung pada jenis ekstensi atau format berkas tersebut.
+Pemisahan Algoritma Enkripsi
+Sesuai dengan spesifikasi penugasan proyek akhir, algoritma yang digunakan untuk enkripsi berkas biner wajib berbeda dari algoritma super enkripsi teks. Aplikasi memanfaatkan algoritma simetris berbasis aliran (stream cipher seperti ChaCha20 atau varian DES stream) yang dirancang khusus untuk memproses aliran byte biner berukuran besar secara cepat dan efisien.
+Operasi Pengacakan Biner
+Proses enkripsi mengeksekusi fungsi pembangkitan aliran kunci (keystream generator) yang menghasilkan deretan byte acak berseri. Byte data asli kemudian dikombinasikan dengan byte keystream menggunakan operasi bitwise XOR (). Hasil pengolahan ini menghasilkan berkas terenkripsi berformat .locked yang tidak dapat dibuka, dibaca, maupun dieksekusi oleh aplikasi luar.
+Sifat Reversibilitas Utuh (100% Reversible)
+Karena operasi bitwise XOR memiliki sifat inversibilitas simetris (DataKunciKunci=Data), proses dekripsi dilakukan dengan menerapkan urutan keystream yang sama pada berkas terenkripsi. Hal ini menjamin bahwa berkas biner hasil dekripsi dapat dikembalikan secara presisi 100% ke bentuk semula tanpa mengalami kehilangan data (data loss) atau kerusakan struktur berkas.
+Steganografi Citra Digital (Least Significant Bit - LSB)
+Steganografi merupakan seni dan ilmu menyembunyikan eksistensi pesan rahasia di dalam media pembawa (cover medium) lain seperti gambar, audio, atau video sehingga pihak luar (adversaries) tidak menyadari keberadaan komunikasi rahasia yang sedang berlangsung. Berbeda dengan kriptografi yang berfokus pada menyamarkan makna pesan agar tidak dapat dibaca (confidentiality), steganografi berfokus pada menyamarkan keberadaan pesan itu sendiri. Dalam aplikasi CyberVault System, teknik steganografi diterapkan pada media citra digital format lossless PNG (Portable Network Graphics) menggunakan metode Least Significant Bit (LSB).
+Adapun rincian teoretis dan mekanisme teknis pada metode steganografi LSB citra digital ini mencakup beberapa komponen utama berikut:
+Konsep Least Significant Bit (LSB)
+Bit paling tidak signifikan (Least Significant Bit) adalah bit dengan bobot nilai terkecil pada representasi biner 8-bit (bit paling kanan dengan nilai 20=1). Mengubah nilai bit LSB pada byte warna piksel citra hanya mengubah intensitas warna tersebut sebesar satu tingkat (misalnya dari nilai 255 menjadi 254). Perubahan mikro ini berada di bawah batas sensitivitas persepsi visual mata manusia (imperceptible), sehingga tidak menimbulkan degradasi visual pada gambar.
+Pemilihan Format Citra Lossless (PNG)
+Pemilihan format citra lossless PNG sangat krusial dalam steganografi LSB. Berbeda dengan format kompresi lossy seperti JPEG yang menerapkan transformasi kuantisasi yang dapat mengubah nilai bit piksel saat file disimpan, format PNG menyimpan data piksel secara presisi tanpa kompresi yang merusak bit data. Hal ini menjamin bit pesan rahasia yang disisipkan pada LSB tetap utuh dan tidak terkorupsi saat gambar disimpan atau ditransmisikan.
+Mekanisme Encoding (Penyisipan Pesan):
+Konversi Teks ke Biner: Teks pesan rahasia terlebih dahulu diubah menjadi deretan bit biner 8-bit per karakter berlandaskan kode standar ASCII.
+Penambahan Penanda Akhir (End-of-Message Marker): Di akhir deretan bit pesan, sistem menyisipkan pola bit penanda khusus (seperti 1111111111111110) yang berfungsi sebagai delimiter untuk menandai batas akhir pesan rahasia saat proses pembacaan.
+Substitusi Bitwise LSB: Deretan bit pesan disisipkan secara urut ke dalam bit LSB komponen warna Red (R), Green (G), dan Blue (B) pada setiap piksel gambar. Formulasi operasi bitwise yang diterapkan pada setiap komponen byte warna piksel P dengan bit pesan b{0,1} adalah:
+Pstego = (P & 0xFE) | b
+di mana masker bitwise 0xFE (111111102) berfungsi mengosongkan nilai bit LSB asli piksel sebelum di-OR-kan ($\mid$) dengan bit pesan b. 
+Mekanisme Decoding (Ekstraksi Pesan): 
+Ekstraksi Bit LSB: Aplikasi membaca bit paling kanan dari kanal warna RGB setiap piksel pada gambar stego secara berurutan menggunakan operasi bitwise AND (P & 1).
+Rekonstruksi Teks: Bit-bit LSB yang terkumpul disusun kembali dan dipindai hingga menemukan urutan biner penanda akhir (end marker). Setelah penanda terdeteksi, bit-bit pesan dipisahkan per 8-bit dan dikonversi kembali ke bentuk teks karakter asli via tabel ASCII secara utuh (100% loss-free recovery).
+
+Teknologi Blockchain Hibrida (Hybrid Dual-Layer Ledger)
+Teknologi blockchain merupakan sistem buku besar terdistribusi (decentralized distributed ledger) yang mencatat transaksi data secara kronologis, transparan, dan tidak dapat diubah (immutable). Dalam aplikasi CyberVault System, blockchain dimanfaatkan sebagai mekanisme penjamin integritas (integrity assurance) untuk mengamankan dan mengaudit aset-aset penting aplikasi dari potensi manipulasi atau pengubahan data oleh pihak yang tidak berhak. Untuk mencapai keseimbangan antara kecepatan konfirmasi lokal dan transparansi audit publik, diterapkan arsitektur Hybrid Dual-Layer Blockchain. 
+Rantai Lokal Proof-of-Work (Layer 1) 
+Layer 1 merupakan fondasi pencatatan ledger internal yang beroperasi secara in-memory atau berbasis basis data lokal SQLite (offline_vault.db). 
+Struktur Blok dan Hash Pointer: Setiap blok dalam rantai lokal terdiri atas header blok dan body blok. Header memuat informasi nomor indeks blok, stempel waktu (timestamp), nilai hash dari blok sebelumnya (previous hash pointer), data hash SHA-256 dari aset penting, nilai nonce, serta nilai hash dari blok itu sendiri. Keterkaitan rantai menggunakan hash pointer memastikan bahwa jika data pada satu blok diubah secara ilegal, seluruh nilai hash pada blok-blok berikutnya menjadi tidak valid.
+Mekanisme Konsensus Proof-of-Work (PoW): Untuk menambahkan blok baru ke dalam rantai lokal, sistem mengeksekusi algoritma Proof-of-Work sederhana. Sistem mencari nilai nonce sedemikian rupa sehingga nilai hash SHA-256 blok yang dihasilkan memenuhi kriteria tingkat kesulitan (target difficulty, misalnya diawali dengan beberapa digit nol 0000). Mekanisme ini menjamin ketahanan rantai lokal dari manipulasi data instan (tamper-proof).
+Audit Anti-Manipulasi Instan (0-Detik): Keunggulan pencatatan Layer 1 adalah kecepatan konfirmasi instan (0-detik) tanpa ketergantungan pada koneksi internet. Setiap kali aset disimpan atau diperbarui, hash aset langsung diverifikasi terhadap rantai blok lokal untuk mendeteksi integritas data secara real-time.
+Rantai Publik Polygon Amoy Testnet (Layer 2) 
+Layer 2 merupakan lapisan penyelarasan (synchronization layer) publik yang menghubungkan sistem lokal dengan jaringan blockchain publik Polygon Amoy Testnet berbasis pustaka web3.py. 
+Arsitektur Background Async Worker: Untuk mencegah penurunan performa antarmuka pengguna (UI responsiveness), proses sinkronisasi transaksi ke jaringan publik dijalankan secara asynchronous background worker. Proses ini bertugas mengirimkan transaksi data hash aset ke smart contract atau node RPC (melalui penyedia layanan seperti Alchemy atau Infura) tanpa memblokir aktivitas utama pengguna pada aplikasi.
+Imutabilitas dan Transparansi Publik: Setelah transaksi berhasil dikonfirmasi oleh para validator pada jaringan Polygon Amoy Testnet, hash transaksi (transaction hash / TxHash) dicatat secara permanen di dalam ledger publik. Sifat terdesentralisasi dari blockchain publik menjamin bahwa bukti keutuhan aset tidak dapat dihapus, diubah, atau dipalsukan oleh siapa pun.
+Integrasi Tautan Verifikasi Explorer: Sebagai bukti audit resmi yang transparan dan dapat diverifikasi oleh pihak ketiga, sistem secara otomatis menghasilkan tautan verifikasi transaksi yang mengarah langsung ke penjelajah blok resmi ([amoy.polygonscan.com/tx/](https://amoy.polygonscan.com/tx/)<tx_hash>). Tautan ini memungkinkan pengguna dan dosen penguji melakukan audit integritas data secara independen pada jaringan blockchain global secara real-time.
+BAB III
+RANCANGAN & ARSITEKTUR SISTEM
+Arsitektur Teknologi (Tech Stack) 
+Perangkat Lunak Utama dan Lingkungan Pengkodean
+	Aplikasi dikembangkan dengan bahasa Python 3.10+ pada sistem operasi Mac/Windows 11 64-bit. Entry point aplikasi adalah main.py, yang menambahkan direktori proyek ke sys.path, memuat variabel lingkungan dari berkas .env melalui python-dotenv, lalu menjalankan jendela utama berbasis CustomTkinter, Kredensial sensitif (kunci Supabase), kunci privat dompet, URL RPC) disimpan di .env yang dikecualikan dari repositori melalui .gitignore.
+
+Pustaka Kriptografi, Pemrosesan Citra, dan GUI 
+
+Kebutuhan
+Pustaka
+Fungsi
+Antarmuka
+customtkinter ≥ 5.2.2
+GUI bertema Tactical Dark UI
+Kriptografi Modern
+pycryptodome ≥ 3.20.0
+AES 256-CBC, ChaCha20/DES, padding PKCS#7
+Hash
+hashlib (standar Python)
+SHA-256 untuk password dan integritas aset
+Kriptografi klasik
+modus manual
+Vigenere Chiper (Full ASCII)
+Biometrik wajah
+opencv-python ≥ 4.11
+Akuisisi webcam dan pencocokan wajah
+Basis data lokal
+sqlite3 (standar Python)
+Failover offline_vault.db
+Basis data cloud
+supabase ≥ 2.4
+Penyimpanan ciphertext dan log
+Steanografi
+Pillow ≥ 10.3
+Manipulasi piksel LSB dan PNG
+
+
+Modul Kontrol Akses Fisik dan Integrasi Blockchain
+Kontrol akses fisik : psutil ≥ 5.9.8 memindai removable drive dan memverifikasi berkas classified.key.
+Blockchain lapis 2 : web3 ≥ 6.18.0 dan eth-account ≥ 0.11.2 untuk menandatangani dan mengirim transaksi ke Polygon Amoy Testnet (Chain ID 80002) melalui RPC https://rpc-amoy.polygon.technology.
+Konfigurasi : POLYGON_AMOY_RPC_URL, WALLET_PRIVATE_KEY, WALLET_ADDRESS, SUPABASE_URL, SUPABASE_KEY, SQLITE_DB_PATH.
+
+Perancangan Alur Kerja dan Arsitektur Sistem (System Workflow) 
+Diagram Arsitektur Keseluruhan Sistem (CyberVault Architecture)
+Sistem terdiri dari empat lapisan :
+Gerbang autentikasi (dongle, wajah, password)
+Dashboard dengan empat modul kriptografi
+Lapisan Penyimpanan (Supabase dan SQLite)
+Lapisan integritas (rantai lokal PoW dan Polygon Amoy)
+Struktur direktori mengikuti pemisahan tanggung jawab : core/ (logika kriptografi murni), database/ (akses data), ui/ (antarmuka), dan dongle_sample/ (token fisik contoh).
+(screenshot gambar diagram arsitekur notion)
+
+Alur Autentikasi Multi-Lapis (USB Dongle, Biometrik Wajah, & Salted Password Hash) 
+Aplikasi dijalankan. Daemon USB Sentinel memeriksa removable drive yang berisi classified.key. Tanpa dongle sah, aplikasi berhenti di layar tunggu.
+Dongle valid, sistem mengaktifkan webcam. Encoding wajah dibandingkan dengan citra master terdaftar. Jarak di bawah ambang batas dianggap cocok.
+Wajah cocok, pengguna memasukkan password. Sistem menghitung Hash = SHA-256(Salt || Password) dan membandingkannya dengan hash tersimpan.
+Ketiganya lolos, dashboard terbuka. Jika dongle dicabut kapan pun, sesi dikunci otomatis (auto-lock).
+
+Alur Pemrosesan Super Enkripsi Teks (Vigenère + AES-256-CBC) 
+Enkripsi : plaintext → Vigenère (kunci K1, ruang karakter 256) → padding PKCS#7 → AES-256-CBC (kunci K2, IV acak 16 byte) → Base64. Keluaran berupa IV + ciphertext.
+Dekripsi : Base64 decode → pisahkan IV → AES-256-CBC dekripsi → buang padding → Vigenère dekripsi → plaintext.
+Yang disimpan ke basis data hanya ciphertext, IV, dan metadata. Plaintext tidak pernah disimpan.
+
+Alur Penguncian Berkas Biner (Binary File Locker) 
+Pengguna memilih berkas (PDF, DOCX, ZIP, dll.).
+Sistem membaca raw byte stream, membangkitkan nonce acak, lalu mengenkripsi dengan ChaCha20 (algoritma berbeda dari AES pada modul teks).
+Keluaran disimpan sebagai <nama>.locked berisi nonce + ciphertext.
+Dekripsi membaca nonce, mengaplikasikan keystream yang sama, dan mengembalikan berkas identik (bit-for-bit). Verifikasi dengan membandingkan SHA-256 berkas asli dan hasil dekripsi.
+
+Alur Penyembunyian dan Ekstraksi Steganografi LSB Citra PNG 
+Embed: pesan (opsional sudah terenkripsi) → deretan bit + penanda akhir 1111111111111110 → disisipkan ke LSB kanal R, G, B tiap piksel dengan P_stego = (P & 0xFE) | b → simpan sebagai PNG.
+Extract: baca P & 1 dari tiap kanal secara berurutan → kelompokkan per 8 bit → berhenti saat penanda akhir ditemukan.
+Syarat kapasitas: jumlah bit pesan + penanda ≤ 3 × lebar × tinggi.
+Alur Pencatatan dan Sinkronisasi Hybrid Blockchain Ledger  
+Aset penting dihitung SHA-256-nya.
+Layer 1: hash dibungkus menjadi blok baru (index, timestamp, previous hash, data hash, nonce), dilakukan Proof-of-Work sampai hash blok berawalan 0000, lalu disimpan ke SQLite.
+Layer 2: background worker asinkron menandatangani dan mengirim transaksi berisi hash aset ke Polygon Amoy, TxHash disimpan di kolom blok.
+Audit: verifikasi ulang seluruh rantai lokal dan buka tautan https://amoy.polygonscan.com/tx/<tx_hash>.
+Perancangan Antarmuka Pengguna (User Interface Design) 
+Konsep Tata Letak dan Tema Visual (Tactical Dark UI) 
+	Palet warna : latar #0f172a (slate gelap), aksen #10b981 (emerald) dan #06b6d4 (cyan), tipografi monospace bergaya terminal. Antarmuka sengaja bersih: hanya tombol fungsional (Enkripsi, Dekripsi, Upload, Sync, Audit) tanpa rumus matematis. Teori dipindahkan ke laporan.
+Perancangan Antarmuka Layar Autentikasi dan Login 
+Tiga tahap berurutan dalam satu jendela: indikator status dongle, pratinjau webcam dengan status pemindaian wajah, dan form password. Setiap tahap hanya aktif setelah tahap sebelumnya lolos. Layar peringatan merah ditampilkan saat auto-lock
+Perancangan Dashboard Utama dan Menu Navigasi Modul 
+Panel navigasi samping berisi empat modul : Text Super-Encryption, File Lock & Unlock, Image Steganography, Asset Integrity Ledger. Bilah status atas menampilkan kondisi dongle dan koneksi Supabase/Polygon.
+Perancangan Tampilan Modul Enkripsi Teks dan File 
+Modul teks: dua kolom input/output, field kunci K1 dan K2, tombol Enkripsi/Dekripsi/Simpan. Modul file: pemilih berkas, field kunci, tombol Lock/Unlock, dan indikator ukuran serta hash berkas.
+Perancangan Tampilan Steganografi dan Audit Trail Ledger 
+Modul stego: pemilih citra PNG pembawa, input pesan, pratinjau citra asli vs stego, tombol Embed/Extract. Modul ledger: tabel blok (index, waktu, hash aset, hash blok, status sinkronisasi) dan tombol Audit Chain serta Open Explorer.
+Skema Basis Data dan Struktur Ledger 
+Skema Tabel Basis Data (Supabase Cloud & Failover SQLite) 
+	Berdasarkan offline_vault.db pada repositori, skema lokal memuat tiga kelompok tabel :
+
+Tabel
+Kolom utama
+Fungsi
+authorized_dongles
+serial_number (PK), operator_name, badge_id, token_signature, password_salt, password_hash, face_profile_hash, is_active, registered_at
+
+
+Identitas dongle dan kredensial (hanya salt + hash) 
+evidence_records
+evidence_id (PK), evidence_type, cipher/algoritma, iv_nonce, data_hash, layer1_block_hash, layer2_tx_hash, created_at
+
+
+Ciphertext dan metadata aset terenkripsi
+audit_blocks
+block_index (PK), timestamp, evidence_id, evidence_hash, previous_hash, nonce, block_hash, layer2_tx_hash, created_at
+Rantai blok lokal
+
+(nama kolom cocokkan sama database/schema.sql)
+Skema yang sama dipakai di Supabase (PostgresSQL). Seluruh isi data hanya berupa ciphertext (Base64/Hex), IV, salt, dan hash.
+Struktur Blok dan Pointer Hash Local Proof-of-Work (Layer 1)
+block_hash = SHA-256(index || timestamp || evidence_hash || previous_hash || nonce)
+syarat PoW : block_hash diawali "0000"
+
+Blok genesis memakai previous_hash berisi nol. Mengubah satu blok membuat block_hash berikutnya tidak cocok, sehingga Audit Chain menandai blok tersebut sebagai rusak.
+Format Payload Transaksi dan Metadata Polygon Amoy Testnet (Layer 2)
+	
+
+
+BAB IV
+IMPLEMENTASI & PENGUJIAN SISTEM
+Spesifikasi Lingkungan Implementasi 
+Spesifikasi Perangkat Keras dan Kamera Pemindai
+Lingkungan Sistem Operasi dan Interpreter Python 
+Pustaka dan Dependensi Perangkat Lunak Utama  
+customtkinter ≥ 5.2.2, pycryptodome ≥ 3.20.0, opencv-python ≥ 4.11.0.86, Pillow ≥ 10.3.0, psutil ≥ 5.9.8, web3 ≥ 6.18.0, eth-account ≥ 0.11.2, supabase ≥ 2.4.0, python-dotenv ≥ 1.0.1. Instalasi : pip install -r requirements.txt.
+
+Implementasi Modul Utama (Core Engine) 
+
+Modul
+Status
+Dongle USB (psutil)
+Belum diimplementasi
+Biometrik wajah (OpenCV)
+
+
+Password SHA-256 + salt
+
+
+Super enkripsi teks
+
+
+File locker
+
+
+Steganografi LSB
+
+
+Blockchain
+Belum diimplementasi
+
+
+Modul Autentikasi Dongle USB dan Sentinel Listener (psutil) 
+Modul Pemindaian Biometrik Wajah (OpenCV) 
+Modul Verifikasi Password Hash (SHA-256 with Salt) 
+Modul Super Enkripsi Teks (Vigenère Cipher & AES-256-CBC) 
+Modul Penguncian Berkas Biner (Binary File Locker) 
+Modul Steganografi LSB Citra PNG (Pillow) 
+Modul Pencatatan dan Sinkronisasi Blockchain Hibrida (web3.py) 
+Implementasi Antarmuka Pengguna (User Interface) 
+Tampilan Gerbang Autentikasi Dongle dan Pemindaian Wajah
+Gambar 4.1 Tampilan Saat Dongle Terpasang 
+Gambar 4.2 Tampilan Saat Dongle Tidak Terpasang
+Tampilan Dashboard Utama CyberVault System
+Tampilan Modul Super Enkripsi Teks dan File Locker 
+Tampilan Modul Steganografi Gambar dan Audit Ledger Blockchain 
+Pengujian Fungsional dan Analisis Hasil (Black-Box Testing)
+Pengujian Responsivitas Auto-Lock Dongle dan Akurasi Biometrik 
+
+No
+Skenario
+Hasil Diharapkan
+Hasil Aktual
+Status
+1
+Aplikasi dibuka tanpa flashdisk
+Ditolak, layar tunggu dongle
+
+
+
+
+2
+Flashdisk tanpa classified.key
+Ditolak
+
+
+
+
+3
+Flashdisk sah dicolok
+Lanjut ke scan wajah
+
+
+
+
+4
+Flashdisk dicabut saat aplikasi berjalan
+Auto-lock
+
+
+
+
+5
+Wajah terdaftar
+Lolos
+
+
+
+
+6
+Wajah tidak terdaftar / foto
+Ditolak
+
+
+
+
+7
+Password benar / salah
+Lolos / ditolak
+
+
+
+
+
+
+Pengujian Kerahasiaan Super Enkripsi dan Reversibilitas File Locker (100%)
+
+No
+Skenario
+Hasil diharapkan
+Hasil aktual
+1
+Enkripsi teks yang sama dua kali
+Ciphertext berbeda (IV acak)
+
+
+2
+Dekripsi dengan kunci yang benar
+Plaintext identik
+
+
+3
+Dekripsi dengan kunci salah
+Gagal / keluaran sampah
+
+
+4
+Lock lalu unlock PDF, DOCX, ZIP
+SHA-256 sebelum = sesudah
+
+
+5
+Buka .locked di aplikasi lain
+Tidak dapat dibuka
+
+
+6
+Cek isi tabel di DB
+Hanya ciphertext / IV / hash
+
+
+
+ 
+Pengujian Imperseptibilitas Visual dan Ekstraksi Steganografi LSB 
+
+No
+Skenario
+Hasil diharapkan
+Hasil aktual
+1
+Embed pesan pendek lalu extract
+Pesan identik
+
+
+2
+Embed mendekati kapasitas maksimum
+Berhasil
+
+
+3
+Pesan melebihi kapasitas
+Ditolak dengan pesn error
+
+
+4
+Bandingkan citra asli vs stego
+Tidak terlihat beda, hitung PSNR (nilai)
+
+
+
+
+Pengujian Integritas Rantai Lokal PoW dan Verifikasi Transaksi PolygonScan
+
+No
+Skenario
+Hasil diharapkan
+Hasil aktual
+1
+
+
+
+
+
+
+2
+
+
+
+
+
+
+3
+
+
+
+
+
+
+4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BAB V
+PENUTUP
+Kesimpulan
+Saran
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DAFTAR PUSTAKA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LAMPIRAN
+Lampiran 1: Tangkapan Layar Antarmuka User Interface Screenshots)
+Lampiran 1.1: Tangkapan Layar Gerbang Autentikasi Ganda (Pemeriksaan Dongle USB & Pemindaian Wajah)
+
+
+
+
+Lampiran 1.2: Tangkapan Layar Form Login Password Hash SHA-256
+
+
+
+
+Lampiran 1.3: Tangkapan Layar Layar Peringatan Auto-Lock saat Dongle USB Dicabut
+
+
+
+
+Lampiran 1.4: Tangkapan Layar Beranda Utama CyberVault Dashboard (Tactical Dark UI)
+
+
+
+
+Lampiran 1.5: Tangkapan Layar Modul Super Enkripsi Teks (Proses Enkripsi dan Dekripsi Pesan)
+
+
+
+
+Lampiran 1.6: Tangkapan Layar Modul Binary File Locker (Proses Lock dan Unlock Berkas Dokumen)
+
+
+
+
+Lampiran 1.7: Tangkapan Layar Modul LSB Image Steganography (Proses Penyisipan dan Ekstraksi Pesan Rahasia)
+
+
+
+
+Lampiran 1.8: Tangkapan Layar Modul Asset Integrity Ledger (Riwayat Blok Lokal & Tautan Explorer)
+
+
+
+
+
+Lampiran 2 : Informasi Repositori GitHub dan Depedensi Sistem
+Lampiran 5.1: Tautan Repositori GitHub Resmi Kelompok (cyber-vault-system) dan Pengaturan Akses Collaborator
+
+
+
+
+Lampiran 5.2: Berkas Daftar Dependensi dan Pustaka Python (requirements.txt)
+
+
+
+
+Lampiran 5.3: Dokumen Panduan Instalasi, Konfigurasi Environment, dan Menjalankan Aplikasi (README.md)
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+{
+    "charlie": {
+        "username": "charlie",
+        "password_hash": "f9b79f974eeef99d890d97fb25862cd20dc0fa33aa7423180651735ffff4844f",
+        "salt": "3b71ec5dcd00bd7c592d26685e5e4ac2",
+        "reference_face_path": "C:\\Users\\Herang\\Documents\\Kripto2\\data\\reference_faces\\charlie_b9dd960c_face.png",
+        "dongle_key_path": "C:\\Users\\Herang\\Documents\\Kripto2\\data\\virtual_dongle\\secure_dongle.key"
+    },
+    "alice": {
+        "username": "alice",
+        "password_hash": "1b5463e6c12dd0dc536415b91394da3bd1f2fbeb4344e6a38cf02a9acc1a1521",
+        "salt": "044c22db447bc2baeaebc77b49fb6f45",
+        "reference_face_path": "C:\\Users\\Herang\\Documents\\Kripto2\\data\\reference_faces\\alice_2bd806c9_face.png",
+        "dongle_key_path": "C:\\Users\\Herang\\Documents\\Kripto2\\data\\e2e_runtime\\usb_dongle_drive\\secure_dongle.key"
+    },
+    "bob": {
+        "username": "bob",
+        "password_hash": "9ca5f171df20787bee1ccffaeff0b0dff0848814a377bf068d3393dfeb5b3236",
+        "salt": "76df78615681cd6668b56f8e440a301a",
+        "reference_face_path": "C:\\Users\\Herang\\Documents\\Kripto2\\data\\reference_faces\\bob_81b637d8_face.png",
+        "dongle_key_path": "C:\\Users\\Herang\\Documents\\Kripto2\\data\\e2e_runtime\\usb_dongle_bob\\secure_dongle.key"
+    }
+}

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi Tugas Akhir Kriptografi - Secure Messenger</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #10b981;
+            --dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #f59e0b;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: var(--dark);
+            color: var(--text-light);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .slide-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            position: relative;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            height: 85vh;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 45px 55px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+        .slide.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: #60a5fa;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #38bdf8;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.25rem;
+            color: #34d399;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p, li {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .badge {
+            background-color: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--secondary);
+            color: #6ee7b7;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 15px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .card.highlight {
+            border-left: 4px solid var(--primary-light);
+        }
+        code {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #fbbf24;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.92rem;
+        }
+        th, td {
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+        th {
+            background: rgba(30, 58, 138, 0.5);
+            color: #93c5fd;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .nav-bar {
+            height: 60px;
+            background: #090d16;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover {
+            background: var(--primary-light);
+        }
+        .slide-counter {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .speaker-tag {
+            font-size: 0.8rem;
+            color: #f59e0b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+
+    <!-- SLIDE 1 -->
+    <div class="slide active">
+        <div class="badge">Mata Kuliah: Kriptografi</div>
+        <h1>🛡️ Sistem Aplikasi Pesan Rahasia (Secure Messenger)</h1>
+        <p style="font-size: 1.25rem; color: #94a3b8; margin-bottom: 25px;">
+            Implementasi Keamanan Komunikasi Berlapis (Defense-in-Depth) Menggunakan Python & Streamlit
+        </p>
+        
+        <div class="grid-3">
+            <div class="card highlight">
+                <div class="speaker-tag">Anggota 1</div>
+                <h3>Otentikasi & Storage</h3>
+                <ul>
+                    <li>USB Dongle (HMAC+AES)</li>
+                    <li>Biometrik Wajah OpenCV</li>
+                    <li>PBKDF2-HMAC-SHA256</li>
+                    <li>SQLite Data-at-Rest</li>
+                </ul>
+            </div>
+            <div class="card highlight">
+                <div class="speaker-tag">Anggota 2</div>
+                <h3>Cryptographic Core Engine</h3>
+                <ul>
+                    <li>Vigenère Manual (Klasik)</li>
+                    <li>AES-256-GCM (AEAD)</li>
+                    <li>Super Enkripsi Teks</li>
+                    <li>ChaCha20-Poly1305 Berkas</li>
+                </ul>
+            </div>
+            <div class="card highlight">
+                <div class="speaker-tag">Anggota 3</div>
+                <h3>Steganografi & Blockchain</h3>
+                <ul>
+                    <li>Steganografi Gambar PNG</li>
+                    <li>Steganografi Audio WAV</li>
+                    <li>Steganografi Video FFV1</li>
+                    <li>Blockchain SHA-256 PoW</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+        <div class="speaker-tag">Anggota 1</div>
+        <h2>Latar Belakang & Permasalahan Keamanan</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>⚠️ Kelemahan Sistem Konvensional</h3>
+                <ul>
+                    <li><b>Single Layer Dependency:</b> Hanya bergantung pada pengamanan jalur transmisi (TLS). Jika gerbang login ditembus, data terbuka sepenuhnya.</li>
+                    <li><b>Kebocoran Data-at-Rest:</b> Berkas basis data lokal sering kali disimpan dalam bentuk teks biasa (plaintext), mudah dicuri via serangan offline.</li>
+                    <li><b>Ketiadaan Jejak Forensik (Non-Repudiation):</b> Sulit membuktikan keaslian dan integritas histori transaksi pesan jika terjadi perselisihan data.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🛡️ Solusi yang Diusulkan</h3>
+                <ul>
+                    <li><b>Pertahanan Berlapis (Defense-in-Depth):</b> Data dilindungi dari level gerbang fisik, biometrik, cipher teks, enkripsi berkas, steganografi, hingga blockchain.</li>
+                    <li><b>Pemisahan Algoritma & Kunci:</b> Pesan teks, berkas lampiran, dan media stego masing-masing menggunakan algoritma dan derivasi kunci yang independen.</li>
+                    <li><b>Audit Trail Nir-Bantah:</b> Setiap transaksi pesan dan berkas diikat ke blok rantai dengan konsensus Proof-of-Work.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide">
+        <div class="speaker-tag">Anggota 1</div>
+        <h2>Arsitektur Sistem (Defense-in-Depth)</h2>
+        <div class="card" style="margin-bottom: 20px;">
+            <p>Arsitektur dirancang dalam <b>3 Lapisan Utama</b> yang saling terintegrasi dalam antarmuka <b>Streamlit</b>:</p>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <h3>1. Gerbang Akses 3FA</h3>
+                <p>Otentikasi 3-Faktor memverifikasi:</p>
+                <ul>
+                    <li><b>Fisik:</b> USB Dongle (HMAC-SHA256)</li>
+                    <li><b>Biometrik:</b> Wajah (OpenCV)</li>
+                    <li><b>Pengetahuan:</b> Password (PBKDF2)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>2. Mesin Enkripsi & Stego</h3>
+                <p>Pengamanan muatan data:</p>
+                <ul>
+                    <li><b>Teks:</b> Super Enkripsi (Vigenère + AES-GCM)</li>
+                    <li><b>Berkas:</b> ChaCha20-Poly1305</li>
+                    <li><b>Media:</b> Pre-AES + LSB (PNG, WAV, Video)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>3. Integritas & Ledger</h3>
+                <p>Penyimpanan aman dan audit:</p>
+                <ul>
+                    <li><b>Basis Data:</b> SQLite Data-at-Rest</li>
+                    <li><b>Audit Trail:</b> Blockchain SHA-256</li>
+                    <li><b>Konsensus:</b> Proof-of-Work (PoW)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide">
+        <div class="speaker-tag">Anggota 1</div>
+        <h2>Lapisan 1: Otentikasi Tiga Faktor (3FA)</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>🔑 Faktor 1: Dongle USB</h3>
+                <p><b>Something You Have:</b></p>
+                <ul>
+                    <li>Pendeteksian USB flashdisk fisik otomatis via <code>psutil</code>.</li>
+                    <li>Berkas <code>secure_dongle.key</code> memuat token acak yang dienkripsi <b>AES-256-GCM</b>.</li>
+                    <li>Ditandatangani secara digital dengan <b>HMAC-SHA256</b> untuk menjamin anti-modifikasi.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>👤 Faktor 2: Biometrik Wajah</h3>
+                <p><b>Something You Are:</b></p>
+                <ul>
+                    <li>Deteksi wajah kamera langsung via <b>Haar Cascade OpenCV</b>.</li>
+                    <li>Normalisasi dimensi (200x200 px) & ekualisasi histogram kontras.</li>
+                    <li>Pencocokan kemiripan gabungan (Cross-Correlation & Histogram) dengan ambang batas minimal <b>65%</b>.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🔒 Faktor 3: Sandi PBKDF2</h3>
+                <p><b>Something You Know:</b></p>
+                <ul>
+                    <li>Standar NIST SP 800-132.</li>
+                    <li><b>100.000 Iterasi</b> derivasi kunci dengan pseudorandom HMAC-SHA256.</li>
+                    <li>Cryptographic Salt acak 128-bit (mencegah serangan <i>Rainbow Table</i>).</li>
+                    <li>Verifikasi waktu-konstan (<i>constant-time</i>).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="slide">
+        <div class="speaker-tag">Anggota 2</div>
+        <h2>Lapisan 2: Super Enkripsi Pesan Teks</h2>
+        <p style="margin-bottom: 15px;">Menggabungkan cipher klasik dan modern secara bertingkat (<i>Cascaded Hybrid Cipher</i>):</p>
+        
+        <div class="card" style="text-align: center; font-size: 1.15rem; margin-bottom: 20px; background: rgba(30, 58, 138, 0.3);">
+            Plaintext 
+            <span style="color: #38bdf8;">&rarr; [Vigenère Modulo 256] &rarr;</span> 
+            Intermediate Ciphertext 
+            <span style="color: #34d399;">&rarr; [AES-256-GCM AEAD] &rarr;</span> 
+            Final Base64
+        </div>
+        
+        <div class="grid-2">
+            <div class="card">
+                <h3>Vigenère Cipher (Klasik)</h3>
+                <ul>
+                    <li>Implementasi manual murni tanpa pustaka pihak ketiga.</li>
+                    <li>Mode Extended Byte (Modulo 256) beroperasi pada UTF-8, menjaga format spasi, tanda baca, dan emoji.</li>
+                    <li>Mengaburkan pola frekuensi linguistik teks alami (<i>Confusion</i>).</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>AES-256-GCM (Modern AEAD)</h3>
+                <ul>
+                    <li>Kunci 256-bit standar militer (NIST FIPS 197).</li>
+                    <li>Galois/Counter Mode menghasilkan <b>128-bit Authentication Tag</b>.</li>
+                    <li>Menjamin kerahasiaan sekaligus integritas: modifikasi 1 bit saja langsung membatalkan dekripsi (<i>InvalidTag</i>).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6 -->
+    <div class="slide">
+        <div class="speaker-tag">Anggota 2</div>
+        <h2>Lapisan 3: Enkripsi Berkas (ChaCha20-Poly1305)</h2>
+        <div class="card" style="margin-bottom: 15px;">
+            <p><b>Pemisahan Domain:</b> Berkas dokumen/biner menggunakan algoritma dan kunci yang sepenuhnya berbeda dari pesan teks.</p>
+        </div>
+        <div class="grid-2">
+            <div class="card">
+                <h3>Karakteristik ChaCha20-Poly1305</h3>
+                <ul>
+                    <li><b>Stream Cipher Modern (RFC 8439):</b> Dirancang oleh Daniel J. Bernstein, beroperasi sangat cepat pada data biner besar.</li>
+                    <li><b>Operasi ARX (Add-Rotate-XOR):</b> Tidak menggunakan tabel memori S-Box, secara alami kebal terhadap <i>cache-timing attack</i> pada CPU tanpa instruksi hardware AES-NI.</li>
+                    <li><b>Poly1305 MAC 128-bit:</b> Mengunci keaslian berkas secara byte-demi-byte.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Format Kontainer Berkas</h3>
+                <ul>
+                    <li><code>[MAGIC: SMSG_ENCF]</code> (9 Byte Header)</li>
+                    <li><code>[VERSION: 1]</code> (1 Byte Versi)</li>
+                    <li><code>[NONCE: 12 Byte]</code> (96-bit Nonce Acak)</li>
+                    <li><code>[METADATA TERENKRIPSI]</code> (Nama berkas asli & ukuran terproteksi)</li>
+                    <li><code>[PAYLOAD + POLY1305 TAG]</code></li>
+                    <li><b>Throughput Nyata:</b> Mencapai <b>835,6 MB/s</b>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7 -->
+    <div class="slide">
+        <div class="speaker-tag">Anggota 1</div>
+        <h2>Lapisan 4: Keamanan Basis Data SQLite (Data-at-Rest)</h2>
+        <div class="card" style="margin-bottom: 15px;">
+            <p>Mencegah kebocoran data jika berkas <code>app_database.db</code> dicuri atau dibuka paksa dari luar aplikasi.</p>
+        </div>
+        <div class="grid-2">
+            <div class="card">
+                <h3>Field-Level AES-256-GCM</h3>
+                <ul>
+                    <li><b>Transparan pada DAO:</b> Konten pesan dienkripsi otomatis sebelum perintah <code>INSERT</code>, dan didekripsi otomatis saat <code>SELECT</code>.</li>
+                    <li><b>Pemisahan Kolom Fisik:</b> Kolom <code>encrypted_content</code>, <code>content_nonce</code> (12B), dan <code>content_tag</code> (16B) tersimpan terpisah.</li>
+                    <li><b>Non-Repudiation Hash:</b> Kolom <code>message_hash</code> menyimpan SHA-256 pesan untuk dihubungkan ke Blockchain.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Bukti Fisik Disk (Zero Leakage)</h3>
+                <ul>
+                    <li>Pemeriksaan biner mentah membuktikan teks asli <b>100% TIDAK DITEMUKAN</b> di disk.</li>
+                    <li><b>Deteksi Manipulasi:</b> Jika penyerang mengedit ciphertext via SQLite Browser, fungsi <code>verify_all_records_integrity()</code> langsung mendeteksi baris yang rusak.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8 -->
+    <div class="slide">
+        <div class="speaker-tag">Anggota 3</div>
+        <h2>Lapisan 5: Steganografi Multimedia LSB</h2>
+        <div class="card" style="margin-bottom: 15px;">
+            <p><b>Prinsip Baku:</b> Pesan rahasia <b>wajib dienkripsi AES-256-GCM terlebih dahulu</b> sebelum disisipkan ke bit LSB (Least Significant Bit).</p>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <h3>🖼️ Gambar PNG</h3>
+                <ul>
+                    <li>Format PNG lossless (Deflate compression).</li>
+                    <li>Penyisipan bit LSB pada saluran warna piksel RGB.</li>
+                    <li>Operasi tervektorisasi NumPy sangat cepat (21,8 ms).</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🎵 Audio WAV</h3>
+                <ul>
+                    <li>Format WAV 16-bit PCM uncompressed.</li>
+                    <li>Modifikasi LSB sampel amplitudo suara.</li>
+                    <li>Perubahan hanya $\pm 0,003\%$, sepenuhnya tidak terdengar oleh manusia.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🎬 Video Lossless FFV1</h3>
+                <ul>
+                    <li>Pecah frame video dengan OpenCV.</li>
+                    <li>Sisipkan bit LSB ke frame piksel secara berurutan.</li>
+                    <li>Satukan kembali dengan <b>Codec FFV1</b> (100% bit-exact lossless).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9 -->
+    <div class="slide">
+        <div class="speaker-tag">Anggota 3</div>
+        <h2>Lapisan 6: Audit Trail Blockchain SHA-256</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>Struktur Entitas Blok</h3>
+                <ul>
+                    <li><code>Index</code>: Nomor urut (0 = Genesis Block).</li>
+                    <li><code>Timestamp</code>: Waktu pencatatan UTC.</li>
+                    <li><code>Data</code>: Hash transaksi pesan, berkas, atau log login.</li>
+                    <li><code>Prev_Hash</code>: Hash blok sebelumnya (pengikat rantai).</li>
+                    <li><code>Nonce</code>: Pencacah Proof-of-Work.</li>
+                    <li><code>Hash</code>: SHA-256 kanonikal blok.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Konsensus & Validasi</h3>
+                <ul>
+                    <li><b>Proof-of-Work (PoW):</b> Memaksa penambangan mencari hash berawalan <code>"00..."</code>. Mencegah penulisan ulang riwayat transaksi masa lalu.</li>
+                    <li><b>validate_chain():</b> Memvalidasi keutuhan 3 aspek:
+                        <ol>
+                            <li>Kesesuaian hash internal blok.</li>
+                            <li>Pemenuhan target PoW.</li>
+                            <li>Kekokohan sambungan <code>prev_hash</code>.</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10 -->
+    <div class="slide">
+        <div class="speaker-tag">Anggota 2</div>
+        <h2>Hasil Pengujian & Benchmark Empiris</h2>
+        <p style="margin-bottom: 10px;">Pengukuran kuantitatif dilakukan langsung pada lingkungan pengujian nyata:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Komponen Kriptografi</th>
+                    <th>Ukuran / Beban</th>
+                    <th>Waktu Enkripsi</th>
+                    <th>Waktu Dekripsi</th>
+                    <th>Throughput / Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Super Enkripsi Teks</b></td>
+                    <td>500 Karakter</td>
+                    <td>0,064 ms</td>
+                    <td>0,059 ms</td>
+                    <td>Real-time (< 0,1 ms)</td>
+                </tr>
+                <tr>
+                    <td><b>Super Enkripsi Teks</b></td>
+                    <td>50.000 Karakter</td>
+                    <td>3,879 ms</td>
+                    <td>4,674 ms</td>
+                    <td>~12,89 MB/s</td>
+                </tr>
+                <tr>
+                    <td><b>Enkripsi Berkas ChaCha20</b></td>
+                    <td>500 KB</td>
+                    <td>0,742 ms</td>
+                    <td>0,681 ms</td>
+                    <td>658,2 MB/s</td>
+                </tr>
+                <tr>
+                    <td><b>Enkripsi Berkas ChaCha20</b></td>
+                    <td>2.048 KB (2 MB)</td>
+                    <td>2,394 ms</td>
+                    <td>2,604 ms</td>
+                    <td><b>835,6 MB/s</b></td>
+                </tr>
+                <tr>
+                    <td><b>Steganografi Gambar PNG</b></td>
+                    <td>300x300 px</td>
+                    <td>21,81 ms</td>
+                    <td>8,56 ms</td>
+                    <td>Visual Tidak Berubah</td>
+                </tr>
+                <tr>
+                    <td><b>Steganografi Audio WAV</b></td>
+                    <td>3,0 Detik</td>
+                    <td>9,92 ms</td>
+                    <td>8,05 ms</td>
+                    <td>Audio Jernih (Inaudible)</td>
+                </tr>
+                <tr>
+                    <td><b>Proof-of-Work (Diff: 2)</b></td>
+                    <td>119 Iterasi</td>
+                    <td>0,36 ms</td>
+                    <td>-</td>
+                    <td>Hash Awalan '00...'</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SLIDE 11 -->
+    <div class="slide">
+        <div class="speaker-tag">Bersama</div>
+        <h2>Analisis Kritis: Kelemahan & Keterbatasan</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Steganografi LSB</h3>
+                <p><b>Kelemahan:</b></p>
+                <ul>
+                    <li>Tidak tahan kompresi lossy media sosial (misal JPEG WhatsApp).</li>
+                    <li>Rentan terhadap manipulasi geometri (resizing/cropping).</li>
+                    <li><b>Mitigasi:</b> Berkas wajib ditransmisikan dalam mode dokumen asli.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Password Hashing (PBKDF2)</h3>
+                <p><b>Kelemahan:</b></p>
+                <ul>
+                    <li>Tidak <i>memory-hard</i> dibandingkan Argon2id, sehingga teoretis rentan ASIC/FPGA.</li>
+                    <li><b>Mitigasi:</b> Penggunaan 100.000 iterasi dan salt unik 128-bit menjamin perlindungan standar NIST.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Hardware Dongle</h3>
+                <p><b>Kelemahan:</b></p>
+                <ul>
+                    <li>Flashdisk standar tidak memiliki chip cryptographic secure element (seperti YubiKey).</li>
+                    <li><b>Mitigasi:</b> File kunci diikat HMAC-SHA256 & token terenkripsi AES-256-GCM.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12 -->
+    <div class="slide">
+        <div class="speaker-tag">Bersama</div>
+        <h2>Kesimpulan & Sesi Demo Langsung</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>Kesimpulan Tugas Akhir</h3>
+                <ul>
+                    <li>Seluruh <b>6 kriteria wajib</b> dan <b>9 tahapan pengerjaan</b> telah tuntas 100%.</li>
+                    <li>Arsitektur <b>Defense-in-Depth</b> sukses memadukan keamanan fisik, biometrik, kriptografi simetris modern, cipher klasik, steganografi, dan blockchain.</li>
+                    <li>Pengujian empiris membuktikan performa tinggi dan kemampuan deteksi manipulasi data secara seketika.</li>
+                </ul>
+            </div>
+            <div class="card highlight">
+                <h3>Sesi Demonstrasi Langsung (Live Demo)</h3>
+                <ol>
+                    <li>Pendaftaran Akun & Pembuatan Kunci Dongle USB.</li>
+                    <li>Login 3FA (Webcam Wajah + USB Flashdisk + PBKDF2).</li>
+                    <li>Kirim Pesan Super Enkripsi & Bukti Data-at-Rest SQLite.</li>
+                    <li>Steganografi Audio WAV & Pemutaran Media.</li>
+                    <li>Pemeriksaan Blok Ledger & Uji Audit Rantai (validate_chain).</li>
+                </ol>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 25px; font-size: 1.2rem; color: #34d399; font-weight: 700;">
+            Terima Kasih! Kami Siap Menerima Pertanyaan dari Dewan Penguji.
+        </p>
+    </div>
+
+</div>
+
+<!-- NAVIGATION BAR -->
+<div class="nav-bar">
+    <button class="nav-btn" onclick="prevSlide()">&#8592; Sebelumnya</button>
+    <div class="slide-counter" id="counter">Slide 1 / 12</div>
+    <button class="nav-btn" onclick="nextSlide()">Berikutnya &#8594;</button>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+
+    function showSlide(index) {
+        slides.forEach((s, i) => {
+            s.classList.remove('active');
+            if (i === index) s.classList.add('active');
+        });
+        currentSlide = index;
+        counter.textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+            showSlide(currentSlide + 1);
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            showSlide(currentSlide - 1);
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'Space') {
+            nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+        }
+    });
+</script>
+
+</body>
+</html>
+

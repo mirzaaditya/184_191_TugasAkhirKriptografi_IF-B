@@ -1,0 +1,63 @@
+[
+    {
+        "index": 0,
+        "timestamp": "2026-11-07T10:16:46.268741+00:00",
+        "data": {
+            "type": "GENESIS",
+            "message": "Genesis Block - Secure Messenger Blockchain Ledger 2026",
+            "creator": "SYSTEM",
+            "timestamp": "2026-11-07T10:16:46.268719+00:00"
+        },
+        "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 642,
+        "hash": "00f16e3ef46fa8658d337663e280a517aa6aefd01b1e22405fd5483514ebb8f0"
+    },
+    {
+        "index": 1,
+        "timestamp": "2026-11-07T10:16:46.275522+00:00",
+        "data": {
+            "record_type": "MESSAGE_TRANSACTION",
+            "sender": "hacker_mallory",
+            "recipient": "bob",
+            "asset_type": "TEXT",
+            "message_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "recorded_at": "2026-11-07T10:16:46.275505+00:00"
+        },
+        "prev_hash": "00f16e3ef46fa8658d337663e280a517aa6aefd01b1e22405fd5483514ebb8f0",
+        "nonce": 506,
+        "hash": "00cec6f88e7a1407e71dd5d565eeedb00db27324a7209fd22b2686a89b8139fb"
+    },
+    {
+        "index": 2,
+        "timestamp": "2026-11-07T10:16:46.282180+00:00",
+        "data": {
+            "record_type": "FILE_TRANSACTION",
+            "sender": "bob",
+            "recipient": "alice",
+            "filename": "rencana_strategis.pdf.enc",
+            "file_sha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+            "recorded_at": "2026-11-07T10:16:46.282160+00:00"
+        },
+        "prev_hash": "00cec6f88e7a1407e71dd5d565eeedb00db27324a7209fd22b2686a89b8139fb",
+        "nonce": 10,
+        "hash": "00a6e46dd79ccc823c9ed122b69f047c2e22b171af9fe13f945e4b8a263678f8"
+    },
+    {
+        "index": 3,
+        "timestamp": "2026-11-07T10:16:46.283652+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "charlie",
+            "status": "SUCCESS",
+            "factor_details": {
+                "dongle": "VALID",
+                "face_match": "97.8%",
+                "password": "VALID"
+            },
+            "audit_timestamp": "2026-11-07T10:16:46.283633+00:00"
+        },
+        "prev_hash": "00a6e46dd79ccc823c9ed122b69f047c2e22b171af9fe13f945e4b8a263678f8",
+        "nonce": 1121,
+        "hash": "00a00264155c68fb134cb97da2ed5dc9fae485a6afb7d01790874674a67c13bb"
+    }
+]

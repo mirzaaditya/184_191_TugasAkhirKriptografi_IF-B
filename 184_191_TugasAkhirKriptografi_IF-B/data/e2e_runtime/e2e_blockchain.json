@@ -1,0 +1,72 @@
+[
+    {
+        "index": 0,
+        "timestamp": "2026-11-07T10:17:19.327751+00:00",
+        "data": {
+            "type": "GENESIS",
+            "message": "Genesis Block - Secure Messenger Blockchain Ledger 2026",
+            "creator": "SYSTEM",
+            "timestamp": "2026-11-07T10:17:19.327722+00:00"
+        },
+        "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 442,
+        "hash": "00f847a98b6f2342f41fbffc19aad05223e88fc253c60171d71cf54ed4ac3187"
+    },
+    {
+        "index": 1,
+        "timestamp": "2026-11-07T10:17:22.799604+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "alice",
+            "status": "SUCCESS",
+            "factor_details": {
+                "username": "alice",
+                "dongle_status": true,
+                "biometric_status": true,
+                "password_status": true,
+                "details": {
+                    "dongle": "Dongle USB valid (C:\\Users\\Herang\\Documents\\Kripto2\\data\\e2e_runtime\\usb_dongle_drive\\secure_dongle.key) untuk user 'alice'.",
+                    "biometric": {
+                        "message": "Verifikasi biometrik BERHASIL. Kecocokan wajah: 100.0% (Threshold: 65%).",
+                        "similarity_score": 1.0
+                    },
+                    "password": "Password valid"
+                }
+            },
+            "audit_timestamp": "2026-11-07T10:17:22.799574+00:00"
+        },
+        "prev_hash": "00f847a98b6f2342f41fbffc19aad05223e88fc253c60171d71cf54ed4ac3187",
+        "nonce": 291,
+        "hash": "003349712262953508239d726a7fad401dc2ce4e4f8d1543ebfafea8b441b291"
+    },
+    {
+        "index": 2,
+        "timestamp": "2026-11-07T10:17:22.811052+00:00",
+        "data": {
+            "record_type": "MESSAGE_TRANSACTION",
+            "sender": "alice",
+            "recipient": "bob",
+            "asset_type": "TEXT_SUPER_ENCRYPTED",
+            "message_hash": "3aff0a89c3f8feb6ba659e3ddc006fa533e8551d34b99d19822f70e14bf103c5",
+            "recorded_at": "2026-11-07T10:17:22.811026+00:00"
+        },
+        "prev_hash": "003349712262953508239d726a7fad401dc2ce4e4f8d1543ebfafea8b441b291",
+        "nonce": 48,
+        "hash": "00c30b810fe271eff305b9d4c81d6c5f3c9a1011cd0c71b9c2c4850549e10a5f"
+    },
+    {
+        "index": 3,
+        "timestamp": "2026-11-07T10:17:22.826677+00:00",
+        "data": {
+            "record_type": "FILE_TRANSACTION",
+            "sender": "alice",
+            "recipient": "bob",
+            "filename": "laporan_keuangan.pdf",
+            "file_sha256": "f4d54598d68700e4611d6514121d71332279a9cf7ee4e301ba76549d86ebaa31",
+            "recorded_at": "2026-11-07T10:17:22.826657+00:00"
+        },
+        "prev_hash": "00c30b810fe271eff305b9d4c81d6c5f3c9a1011cd0c71b9c2c4850549e10a5f",
+        "nonce": 231,
+        "hash": "00d3fb19a433b34d93b0e5cf670c91d57975772d39772541ff8a86e61723d657"
+    }
+]

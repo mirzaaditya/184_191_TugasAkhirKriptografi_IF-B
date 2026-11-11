@@ -1,0 +1,489 @@
+[
+    {
+        "index": 0,
+        "timestamp": "2026-11-06T21:20:22.271252+00:00",
+        "data": {
+            "type": "GENESIS",
+            "message": "Genesis Block - Secure Messenger Blockchain Ledger 2026",
+            "creator": "SYSTEM",
+            "timestamp": "2026-11-06T21:20:22.271242+00:00"
+        },
+        "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "nonce": 385,
+        "hash": "001582964def1a3eab5fbd7659f0c3b38a8859297476db93aee5a7c1e44bb942"
+    },
+    {
+        "index": 1,
+        "timestamp": "2026-11-06T21:26:05.410412+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug*1",
+            "status": "USER_REGISTERED",
+            "factor_details": {
+                "dongle_path": "C:\\Users\\Herang\\Documents\\Kripto2\\data\\virtual_dongle"
+            },
+            "audit_timestamp": "2026-11-06T21:26:05.410390+00:00"
+        },
+        "prev_hash": "001582964def1a3eab5fbd7659f0c3b38a8859297476db93aee5a7c1e44bb942",
+        "nonce": 79,
+        "hash": "00c677cc793e1268cac72ca1288749fa9f6ed97c0d22504806f8b0c740b5d227"
+    },
+    {
+        "index": 2,
+        "timestamp": "2026-11-06T21:26:21.607422+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug*1",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": true,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 2 DITOLAK] Data biometrik rujukan untuk pengguna 'testingbug*1' belum terdaftar."
+            },
+            "audit_timestamp": "2026-11-06T21:26:21.607403+00:00"
+        },
+        "prev_hash": "00c677cc793e1268cac72ca1288749fa9f6ed97c0d22504806f8b0c740b5d227",
+        "nonce": 197,
+        "hash": "00a13019469b39d81ebe98e3222bdd0dec8c9f6d603c17534d1e4c3eeb9eaa93"
+    },
+    {
+        "index": 3,
+        "timestamp": "2026-11-06T21:26:44.006415+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug*1",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": true,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 2 DITOLAK] Data biometrik rujukan untuk pengguna 'testingbug*1' belum terdaftar."
+            },
+            "audit_timestamp": "2026-11-06T21:26:44.006379+00:00"
+        },
+        "prev_hash": "00a13019469b39d81ebe98e3222bdd0dec8c9f6d603c17534d1e4c3eeb9eaa93",
+        "nonce": 142,
+        "hash": "0056cfd3806b81f18867fdb72f8b2571c1b640589430d2d9722ea11e006b4ee2"
+    },
+    {
+        "index": 4,
+        "timestamp": "2026-11-06T21:28:22.774672+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug*12",
+            "status": "USER_REGISTERED",
+            "factor_details": {
+                "dongle_path": "C:\\Users\\Herang\\Documents\\Kripto2\\data\\virtual_dongle"
+            },
+            "audit_timestamp": "2026-11-06T21:28:22.774655+00:00"
+        },
+        "prev_hash": "0056cfd3806b81f18867fdb72f8b2571c1b640589430d2d9722ea11e006b4ee2",
+        "nonce": 45,
+        "hash": "00a1c28eb2d0b3033be0b3f557ec038e384b6e7ad3511a4c9683b031da57b0ac"
+    },
+    {
+        "index": 5,
+        "timestamp": "2026-11-06T21:28:35.872506+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug*12",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": true,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 2 DITOLAK] Data biometrik rujukan untuk pengguna 'testingbug*12' belum terdaftar."
+            },
+            "audit_timestamp": "2026-11-06T21:28:35.872488+00:00"
+        },
+        "prev_hash": "00a1c28eb2d0b3033be0b3f557ec038e384b6e7ad3511a4c9683b031da57b0ac",
+        "nonce": 280,
+        "hash": "00dd3fbcdb2577ae0c9e5725a94d7271356d5b4864a1fbc8ac19cad11a696f74"
+    },
+    {
+        "index": 6,
+        "timestamp": "2026-11-06T21:31:09.086523+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug*12",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": true,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 2 DITOLAK] Data biometrik rujukan untuk pengguna 'testingbug*12' belum terdaftar."
+            },
+            "audit_timestamp": "2026-11-06T21:31:09.086506+00:00"
+        },
+        "prev_hash": "00dd3fbcdb2577ae0c9e5725a94d7271356d5b4864a1fbc8ac19cad11a696f74",
+        "nonce": 339,
+        "hash": "008bbb06953821913f2b7164fe0d3f9eed9af756ebdaf6b17bf298c1e94027b0"
+    },
+    {
+        "index": 7,
+        "timestamp": "2026-11-06T21:37:10.356638+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug1",
+            "status": "USER_REGISTERED",
+            "factor_details": {
+                "dongle_path": "D:\\"
+            },
+            "audit_timestamp": "2026-11-06T21:37:10.356607+00:00"
+        },
+        "prev_hash": "008bbb06953821913f2b7164fe0d3f9eed9af756ebdaf6b17bf298c1e94027b0",
+        "nonce": 522,
+        "hash": "00e4dbcf04b2ea9828da30323d0fabc2be39186496737e096e35c6bec0f1e924"
+    },
+    {
+        "index": 8,
+        "timestamp": "2026-11-06T21:37:27.062999+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug1",
+            "status": "SUCCESS",
+            "factor_details": {
+                "dongle": true,
+                "biometric": true,
+                "password": true,
+                "message": "OTENTIKASI SUKSES: Selamat datang, 'testingbug1'!"
+            },
+            "audit_timestamp": "2026-11-06T21:37:27.062977+00:00"
+        },
+        "prev_hash": "00e4dbcf04b2ea9828da30323d0fabc2be39186496737e096e35c6bec0f1e924",
+        "nonce": 99,
+        "hash": "0062b93c8e32a5a3e7fd3af1cccee0ffc3260b4bb282778c998a4686709a26af"
+    },
+    {
+        "index": 9,
+        "timestamp": "2026-11-06T21:38:35.301691+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug1",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": false,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 1 DITOLAK] Dongle ini terdaftar untuk user 'charlie', bukan 'testingbug1'."
+            },
+            "audit_timestamp": "2026-11-06T21:38:35.301677+00:00"
+        },
+        "prev_hash": "0062b93c8e32a5a3e7fd3af1cccee0ffc3260b4bb282778c998a4686709a26af",
+        "nonce": 92,
+        "hash": "00eaa91ac31715961511e2285c2651f2ee66882f08d71b7ec7c1359f5ce4350c"
+    },
+    {
+        "index": 10,
+        "timestamp": "2026-11-06T21:39:08.600002+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug1",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": true,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 2 DITOLAK] Verifikasi biometrik gagal: Wajah tidak terdeteksi dalam frame. Pastikan pencahayaan cukup dan wajah menghadap kamera."
+            },
+            "audit_timestamp": "2026-11-06T21:39:08.599971+00:00"
+        },
+        "prev_hash": "00eaa91ac31715961511e2285c2651f2ee66882f08d71b7ec7c1359f5ce4350c",
+        "nonce": 241,
+        "hash": "001c817df7c967cee579a55358e52b6fb5fe9926c85fb85353e132f54897e9b0"
+    },
+    {
+        "index": 11,
+        "timestamp": "2026-11-06T21:39:22.875764+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug1",
+            "status": "SUCCESS",
+            "factor_details": {
+                "dongle": true,
+                "biometric": true,
+                "password": true,
+                "message": "OTENTIKASI SUKSES: Selamat datang, 'testingbug1'!"
+            },
+            "audit_timestamp": "2026-11-06T21:39:22.875737+00:00"
+        },
+        "prev_hash": "001c817df7c967cee579a55358e52b6fb5fe9926c85fb85353e132f54897e9b0",
+        "nonce": 404,
+        "hash": "00c0ac1862d157182bccd4cf539a90ee9dfc3a1e4b562744416132ab355d1e7c"
+    },
+    {
+        "index": 12,
+        "timestamp": "2026-11-06T21:40:02.297143+00:00",
+        "data": {
+            "record_type": "MESSAGE_TRANSACTION",
+            "sender": "testingbug1",
+            "recipient": "alice",
+            "asset_type": "TEXT_SUPER_ENCRYPTED",
+            "message_hash": "e9c2a47b18ea7b397ff5220e51179b7b07d1ef4e5a436d2e2b1809dbfb612f39",
+            "recorded_at": "2026-11-06T21:40:02.297113+00:00"
+        },
+        "prev_hash": "00c0ac1862d157182bccd4cf539a90ee9dfc3a1e4b562744416132ab355d1e7c",
+        "nonce": 111,
+        "hash": "00b5acf822606288ae44490a521f86bf82b8ab5b9b66a8b9da26ce9f89c74856"
+    },
+    {
+        "index": 13,
+        "timestamp": "2026-11-06T21:48:11.066747+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug2",
+            "status": "USER_REGISTERED",
+            "factor_details": {
+                "dongle_path": "D:\\"
+            },
+            "audit_timestamp": "2026-11-06T21:48:11.066717+00:00"
+        },
+        "prev_hash": "00b5acf822606288ae44490a521f86bf82b8ab5b9b66a8b9da26ce9f89c74856",
+        "nonce": 122,
+        "hash": "00d8306a5f10fd5cd60b47d0552329a37e29a0152e7e48f9b01b141cdebcd2d1"
+    },
+    {
+        "index": 14,
+        "timestamp": "2026-11-06T21:48:30.824364+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug2",
+            "status": "SUCCESS",
+            "factor_details": {
+                "dongle": true,
+                "biometric": true,
+                "password": true,
+                "message": "OTENTIKASI SUKSES: Selamat datang, 'testingbug2'!"
+            },
+            "audit_timestamp": "2026-11-06T21:48:30.824346+00:00"
+        },
+        "prev_hash": "00d8306a5f10fd5cd60b47d0552329a37e29a0152e7e48f9b01b141cdebcd2d1",
+        "nonce": 355,
+        "hash": "0098065868cb86dd09ebbc94eeaca2886d4f22d879fbe1eebbf06e2f62789378"
+    },
+    {
+        "index": 15,
+        "timestamp": "2026-11-06T21:48:53.456133+00:00",
+        "data": {
+            "record_type": "MESSAGE_TRANSACTION",
+            "sender": "testingbug2",
+            "recipient": "testingbug1",
+            "asset_type": "TEXT_SUPER_ENCRYPTED",
+            "message_hash": "ac8901bf9e7a4a3d697f4764dce653793b90073725a1434aa4dde7e8e4a02f03",
+            "recorded_at": "2026-11-06T21:48:53.456101+00:00"
+        },
+        "prev_hash": "0098065868cb86dd09ebbc94eeaca2886d4f22d879fbe1eebbf06e2f62789378",
+        "nonce": 0,
+        "hash": "006c34a60e3814f905bfde875a7210f0dc103ce53c6a30a3f1a13f3b8c8dd9b1"
+    },
+    {
+        "index": 16,
+        "timestamp": "2026-11-06T22:21:33.229892+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug1",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": false,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 1 DITOLAK] Dongle ini terdaftar untuk user 'testingbug2', bukan 'testingbug1'."
+            },
+            "audit_timestamp": "2026-11-06T22:21:33.229874+00:00"
+        },
+        "prev_hash": "006c34a60e3814f905bfde875a7210f0dc103ce53c6a30a3f1a13f3b8c8dd9b1",
+        "nonce": 218,
+        "hash": "0095122024c14be9a0f0b603349ac169cb4dd25222b19e44691bdfbce15bc879"
+    },
+    {
+        "index": 17,
+        "timestamp": "2026-11-06T22:21:47.582446+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug1",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": false,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 1 DITOLAK] Dongle ini terdaftar untuk user 'testingbug2', bukan 'testingbug1'."
+            },
+            "audit_timestamp": "2026-11-06T22:21:47.582428+00:00"
+        },
+        "prev_hash": "0095122024c14be9a0f0b603349ac169cb4dd25222b19e44691bdfbce15bc879",
+        "nonce": 49,
+        "hash": "00887398d55c1dd69c9c22715727d4ace667d6e666c99f2f2285ee30d8c4cd20"
+    },
+    {
+        "index": 18,
+        "timestamp": "2026-11-06T22:21:48.874978+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug1",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": false,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 1 DITOLAK] Dongle ini terdaftar untuk user 'testingbug2', bukan 'testingbug1'."
+            },
+            "audit_timestamp": "2026-11-06T22:21:48.874963+00:00"
+        },
+        "prev_hash": "00887398d55c1dd69c9c22715727d4ace667d6e666c99f2f2285ee30d8c4cd20",
+        "nonce": 24,
+        "hash": "00a973e19034dcb72c74015eab0ee9eb838339e9e57d6da774425c8f3b3fcd04"
+    },
+    {
+        "index": 19,
+        "timestamp": "2026-11-06T22:21:56.497119+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug2",
+            "status": "SUCCESS",
+            "factor_details": {
+                "dongle": true,
+                "biometric": true,
+                "password": true,
+                "message": "OTENTIKASI SUKSES: Selamat datang, 'testingbug2'!"
+            },
+            "audit_timestamp": "2026-11-06T22:21:56.497098+00:00"
+        },
+        "prev_hash": "00a973e19034dcb72c74015eab0ee9eb838339e9e57d6da774425c8f3b3fcd04",
+        "nonce": 552,
+        "hash": "00e86e5d57397b9263f94b6faf6e74daac5a03a9f154bdd6858123cbaa383827"
+    },
+    {
+        "index": 20,
+        "timestamp": "2026-11-06T22:26:53.573776+00:00",
+        "data": {
+            "record_type": "MESSAGE_TRANSACTION",
+            "sender": "testingbug2",
+            "recipient": "testingbug1",
+            "asset_type": "TEXT_SUPER_ENCRYPTED",
+            "message_hash": "4899768af1b467217fae36f7b06db2bd3def42d6aedfb582660519e8bf94c9f8",
+            "recorded_at": "2026-11-06T22:26:53.573761+00:00"
+        },
+        "prev_hash": "00e86e5d57397b9263f94b6faf6e74daac5a03a9f154bdd6858123cbaa383827",
+        "nonce": 1138,
+        "hash": "007a2879112cd4ca0bdeab9f7bcb291091baa9d2364ac18e819e5d2840c091c6"
+    },
+    {
+        "index": 21,
+        "timestamp": "2026-11-06T22:26:53.580372+00:00",
+        "data": {
+            "record_type": "MESSAGE_EVENT",
+            "event_type": "MSG_RECEIVED",
+            "actor": "testingbug1",
+            "message_hash": "4899768af1b467217fae36f7b06db2bd3def42d6aedfb582660519e8bf94c9f8",
+            "audit_timestamp": "2026-11-06T22:26:53.580358+00:00"
+        },
+        "prev_hash": "007a2879112cd4ca0bdeab9f7bcb291091baa9d2364ac18e819e5d2840c091c6",
+        "nonce": 100,
+        "hash": "00bb08efa36b6e3c53b58f0ddbee694cc721a7e1176b0b39a11fbc5dd3489165"
+    },
+    {
+        "index": 22,
+        "timestamp": "2026-11-06T22:28:48.977641+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug3",
+            "status": "USER_REGISTERED",
+            "factor_details": {
+                "dongle_path": "E:\\"
+            },
+            "audit_timestamp": "2026-11-06T22:28:48.977626+00:00"
+        },
+        "prev_hash": "00bb08efa36b6e3c53b58f0ddbee694cc721a7e1176b0b39a11fbc5dd3489165",
+        "nonce": 100,
+        "hash": "0025bcaf0bf1ab931c85e04817507102ef2dbd7ed6c56452503a553042ab0226"
+    },
+    {
+        "index": 23,
+        "timestamp": "2026-11-06T22:29:09.241014+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug3",
+            "status": "FAILED",
+            "factor_details": {
+                "dongle": false,
+                "biometric": false,
+                "password": false,
+                "message": "[FAKTOR 1 DITOLAK] Dongle ini terdaftar untuk user 'testingbug2', bukan 'testingbug3'."
+            },
+            "audit_timestamp": "2026-11-06T22:29:09.240990+00:00"
+        },
+        "prev_hash": "0025bcaf0bf1ab931c85e04817507102ef2dbd7ed6c56452503a553042ab0226",
+        "nonce": 40,
+        "hash": "001f8458ab90814348dcd72d6950caafad8bb8dc07fb5ac04776bf41705b325f"
+    },
+    {
+        "index": 24,
+        "timestamp": "2026-11-06T22:29:54.659948+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug2",
+            "status": "SUCCESS",
+            "factor_details": {
+                "dongle": true,
+                "biometric": true,
+                "password": true,
+                "message": "OTENTIKASI SUKSES: Selamat datang, 'testingbug2'!"
+            },
+            "audit_timestamp": "2026-11-06T22:29:54.659926+00:00"
+        },
+        "prev_hash": "001f8458ab90814348dcd72d6950caafad8bb8dc07fb5ac04776bf41705b325f",
+        "nonce": 205,
+        "hash": "0048bf4d7026be24e6254c515514fd52d69c631c9fd96e1b941c75f864f8be29"
+    },
+    {
+        "index": 25,
+        "timestamp": "2026-11-06T22:30:14.446722+00:00",
+        "data": {
+            "record_type": "FILE_TRANSACTION",
+            "sender": "testingbug2",
+            "recipient": "all_authorized",
+            "filename": "Latihan Responsi IoT Kelas IF-E (1).pdf",
+            "file_sha256": "aa882e7129b06f134200480a18d727e07f67320fd822caccabf075085a43d109",
+            "recorded_at": "2026-11-06T22:30:14.446709+00:00"
+        },
+        "prev_hash": "0048bf4d7026be24e6254c515514fd52d69c631c9fd96e1b941c75f864f8be29",
+        "nonce": 44,
+        "hash": "0055b0a9c0f7feb0fee6e9b3bc8cdcc31524b82d125c723c3881a2ecdb4abc57"
+    },
+    {
+        "index": 26,
+        "timestamp": "2026-11-07T08:36:18.288112+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug4",
+            "status": "USER_REGISTERED",
+            "factor_details": {
+                "dongle_path": "C:\\Users\\Herang\\Documents\\Kripto2\\data\\virtual_dongle"
+            },
+            "audit_timestamp": "2026-11-07T08:36:18.288093+00:00"
+        },
+        "prev_hash": "0055b0a9c0f7feb0fee6e9b3bc8cdcc31524b82d125c723c3881a2ecdb4abc57",
+        "nonce": 129,
+        "hash": "001801d642693c1fb6b8e94cb55e67e3a3d1aa4e0acd801f20ebb8321ea6f4a5"
+    },
+    {
+        "index": 27,
+        "timestamp": "2026-11-07T08:36:36.514296+00:00",
+        "data": {
+            "record_type": "LOGIN_AUDIT",
+            "actor": "testingbug4",
+            "status": "SUCCESS",
+            "factor_details": {
+                "dongle": true,
+                "biometric": true,
+                "password": true,
+                "message": "OTENTIKASI SUKSES: Selamat datang, 'testingbug4'!"
+            },
+            "audit_timestamp": "2026-11-07T08:36:36.514268+00:00"
+        },
+        "prev_hash": "001801d642693c1fb6b8e94cb55e67e3a3d1aa4e0acd801f20ebb8321ea6f4a5",
+        "nonce": 17,
+        "hash": "00d53971572aefc227b9162ec1da5fbf65d9a6655290fef543825f4b5cb4a318"
+    }
+]
